@@ -14,5 +14,11 @@ const User = require('./user')
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User
+  User,
+  Review,
+  Session,
+  Product,
+  OrderList,
+  Carts,
+  Order
 }
