@@ -1,24 +1,46 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {
+  User,
+  Review,
+  Cart,
+  Product,
+  Order,
+  OrderList
+} = require('../server/db/models')
+
+const {
+  users,
+  reviews,
+  carts,
+  products,
+  orderLists,
+  orders
+} = require('./dummy-data')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
-  ])
+  const seededUsers = await Promise.all(users.map(u => User.create(u)))
+  const seededProducts = await Promise.all(products.map(p => Product.create(p)))
+  const seededCarts = await Promise.all(carts.map(c => Cart.create(c)))
+  const seededReviews = await Promise.all(reviews.map(r => Review.create(r)))
+  const seededOrders = await Promise.all(orders.map(o => Order.create(o)))
+  const seededOrderLists = await Promise.all(
+    orderLists.map(o => OrderList.create(o))
+  )
 
-  console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${seededUsers.length} users`)
+  console.log(`seeded ${seededReviews.length} reviews`)
+  console.log(`seeded ${seededCarts.length} carts`)
+  console.log(`seeded ${seededProducts.length} products`)
+  console.log(`seeded ${seededOrders.length} orders`)
+  console.log(`seeded ${seededOrderLists.length} orderLists`)
   console.log(`seeded successfully`)
 }
 
-// We've separated the `seed` function from the `runSeed` function.
-// This way we can isolate the error handling and exit trapping.
-// The `seed` function is concerned only with modifying the database.
 async function runSeed() {
   console.log('seeding...')
   try {
