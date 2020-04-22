@@ -15,3 +15,9 @@ export class AllProducts extends React.Component {
 const mapState = state => ({
   products: state.products
 })
+
+const mapDispatch = dispatch => ({
+  getProducts: () => dispatch(fetchProducts())
+})
+
+export default connect(mapState, mapDispatch)(AllProducts)
