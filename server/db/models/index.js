@@ -1,10 +1,9 @@
-const db = require('./database')
+const db = require('../db')
 
 const Order = require('./order')
 const OrderList = require('./orderList')
 const Cart = require('./cart')
 
-const Session = require('./session')
 const User = require('./user')
 const Review = require('./review')
 const Product = require('./product')
@@ -13,14 +12,8 @@ const Product = require('./product')
 Cart.hasMany(OrderList)
 OrderList.belongsTo(Cart)
 
-Cart.hasOne(Session)
-Session.belongsTo(Cart)
-
 User.hasMany(Review)
 Review.belongsTo(User)
-
-User.hasOne(Session)
-Session.belongsTo(User)
 
 User.hasMany(Order)
 Order.belongsTo(User)
@@ -39,7 +32,6 @@ module.exports = {
   Order,
   OrderList,
   Cart,
-  Session,
   User,
   Review,
   Product
