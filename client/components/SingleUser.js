@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchSingleUser} from '../store/singleUser'
 
@@ -11,14 +12,25 @@ class SingleUser extends React.Component {
     const fullName = this.props.fullName
     const email = this.props.email
     const isAdmin = this.props.isAdmin
-    const googleId = this.props.googleId
+    const reviews = this.props.reviews
 
     return (
       <div className="singleUser">
         <h1 className="fullName">{fullName}</h1>
         <h1 className="email">{email}</h1>
         <div className="adminCheck">{isAdmin ? 'Admin' : ''}</div>
-        <div className="googleId" />
+        <h2>Your Reviews</h2>
+        <h3 className="reviewList">
+          {reviews.map(review => (
+            <div key={review.id}>
+              <Link to={`/reviews/${review.id}`}>
+                <h5>
+                  {review.title} {review.rating}
+                </h5>
+              </Link>
+            </div>
+          ))}
+        </h3>
       </div>
     )
   }
