@@ -14,11 +14,13 @@ class SingleProduct extends React.Component {
     const price = this.props.price
 
     return (
-      <div>
+      <div className="singleProduct">
         <h1 className="productName">{name}</h1>
         <h2> {price} </h2>
         <img src={imageUrl} className="productImage" />
-        <div className="productDescription">{description}</div>
+        <div className="productDescription">
+          <p>{description}</p>
+        </div>
         <button type="button" className="btn">
           Add To Cart
         </button>
