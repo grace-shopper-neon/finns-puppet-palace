@@ -1,4 +1,4 @@
-const db = require('./database')
+const db = require('../db')
 
 const Order = require('./order')
 const OrderList = require('./orderList')
