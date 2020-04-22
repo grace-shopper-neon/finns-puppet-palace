@@ -1,23 +1,23 @@
-const db = require('../db')
+// const db = require('../db')
 
 // const Order = require('./order')
 // const OrderList = require('./orderList')
 // const Cart = require('./cart')
 
-const User = require('./user')
-const Review = require('./review')
-const Product = require('./product')
+// const Session = require('./session')
+// const User = require('./user')
+// const Review = require('./review')
+// const Product = require('./product')
 
-// Model Associations
-
+// // Model Associations
 // Cart.hasMany(OrderList)
 // OrderList.belongsTo(Cart)
 
 // Cart.hasOne(Session)
 // Session.belongsTo(Cart)
 
-User.hasMany(Review)
-Review.belongsTo(User)
+// User.hasMany(Review)
+// Review.belongsTo(User)
 
 // User.hasOne(Session)
 // Session.belongsTo(User)
@@ -25,8 +25,8 @@ Review.belongsTo(User)
 // User.hasMany(Order)
 // Order.belongsTo(User)
 
-Product.hasMany(Review)
-Review.belongsTo(Product)
+// Product.hasMany(Review)
+// Review.belongsTo(Product)
 
 // OrderList.hasMany(Product)
 // Product.belongsTo(OrderList)
@@ -34,12 +34,13 @@ Review.belongsTo(Product)
 // Order.hasMany(OrderList)
 // OrderList.belongsTo(Order)
 
-module.exports = {
-  db,
-  // Order,
-  // OrderList,
-  // Cart,
-  User,
-  Review,
-  Product
-}
+// module.exports = {
+//   db,
+//   Order,
+//   OrderList,
+//   Cart,
+//   Session,
+//   User,
+//   Review,
+//   Product,
+// }
