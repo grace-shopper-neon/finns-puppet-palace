@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import {fetchOneProduct} from '../../store/singleProduct'
+import AllReviews from '../AllReviews'
 
 class SingleProduct extends React.Component {
   componentDidMount() {
@@ -11,7 +12,6 @@ class SingleProduct extends React.Component {
 
   render() {
     const singleProduct = this.props.singleProduct
-    console.log(singleProduct)
     const name = singleProduct.name || ' '
     const imageUrl = singleProduct.imageUrl || ' '
     const description = singleProduct.description || ' '
