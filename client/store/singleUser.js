@@ -24,7 +24,7 @@ export const fetchSingleUser = id => {
 export default function userReducer(state = [], action) {
   switch (action.type) {
     case GET_SINGLE_USER:
-      return action.user
+      return action.singleUser
     default:
       return state
   }
