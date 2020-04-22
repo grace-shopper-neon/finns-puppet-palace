@@ -1,10 +1,10 @@
 import React from 'react'
-import {fetchProducts} from '../../store/productsReducer'
+import {fetchProducts} from '../../store/products'
 import {connect} from 'react-redux'
 
 export class AllProducts extends React.Component {
   componentDidMount() {
-    console.log(this.props)
+    console.log(this.props.getProducts)
     this.props.getProducts()
   }
 

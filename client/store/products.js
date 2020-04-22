@@ -1,5 +1,3 @@
-import Axios from 'axios'
-
 const SET_PRODUCTS = 'SET_PRODUCTS'
 
 export const setProducts = products => ({
