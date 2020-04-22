@@ -1,23 +1,32 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchOneProduct} from '../store/singleProduct'
+import {fetchOneProduct} from '../../store/singleProduct'
 
 class SingleProduct extends React.Component {
   componentDidMount() {
+    console.log(this.props.match.params.id)
     this.props.getSingleProduct(Number(this.props.match.params.id))
   }
 
   render() {
-    const name = this.props.name
-    const imageUrl = this.props.imageUrl
-    const description = this.props.description
-    const price = this.props.price
+    const singleProduct = this.props.singleProduct
+    console.log(singleProduct)
+    const name = singleProduct.name || ' '
+    const imageUrl = singleProduct.imageUrl || ' '
+    const description = singleProduct.description || ' '
+    const price = singleProduct.price || 0
 
     return (
       <div>
         <h1 className="productName">{name}</h1>
-        <h2> {price} </h2>
         <img src={imageUrl} className="productImage" />
+        <h2>
+          {' '}
+          {(price / 100).toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD'
+          })}{' '}
+        </h2>
         <div className="productDescription">{description}</div>
         <button type="button" className="btn">
           Add To Cart
