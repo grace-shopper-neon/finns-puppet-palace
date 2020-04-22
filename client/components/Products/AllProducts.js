@@ -19,16 +19,21 @@ export class AllProducts extends React.Component {
     return (
       <div>
         <h1>Products</h1>
-        <div>
-          {this.props.products.map(product => {
-            return (
-              <div key={product.id}>
-                <h2>{product.name}</h2>
-                <img src={product.imageUrl} />
-                <h4>{product.price}</h4>
-              </div>
-            )
-          })}
+        <div className="container mt-5">
+          <div className="card-deck">
+            {this.props.products.map(product => {
+              return (
+                <div className="card-body" key={product.id}>
+                  <div className="card">
+                    <img className="img-fluid" src={product.imageUrl} />
+                    <h3 className="card-title">{product.name}</h3>
+                    <h5 className="card-subtitle">{product.price}</h5>
+                    <p>{product.description}</p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
     )
