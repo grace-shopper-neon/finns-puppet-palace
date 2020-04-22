@@ -5,6 +5,9 @@ export const setProducts = products => ({
   products
 })
 
+const imageUrl =
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Creative-Tail-Animal-dog.svg/256px-Creative-Tail-Animal-dog.svg.png'
+
 export const fetchProducts = () => {
   return dispatch => {
     try {
@@ -14,21 +17,21 @@ export const fetchProducts = () => {
           id: 1,
           name: 'Dragon',
           description: 'get three dragons for the price of one!',
-          imageUrl: '../../testImage.png',
+          imageUrl: imageUrl,
           price: '1000'
         },
         {
           id: 1,
           name: 'Cat',
           description: 'get three cats for the price of one!',
-          imageUrl: '../../testImage.png',
+          imageUrl: imageUrl,
           price: '10000'
         },
         {
           id: 1,
           name: 'Dog',
           description: 'get three dogs for the price of one!',
-          imageUrl: '../../testImage.png',
+          imageUrl: imageUrl,
           price: '40000'
         }
       ]
