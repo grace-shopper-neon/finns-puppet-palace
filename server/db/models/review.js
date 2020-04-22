@@ -1,7 +1,7 @@
-const Sequelize = require("sequelize");
-const db = require("./database");
+const Sequelize = require('sequelize')
+const db = require('../db')
 
-const Review = db.define("review", {
+const Review = db.define('review', {
   rating: {
     type: Sequelize.INTEGER,
     validate: {
@@ -12,7 +12,7 @@ const Review = db.define("review", {
   },
   description: {
     type: Sequelize.TEXT
-  },
-});
+  }
+})
 
 module.exports = Review
