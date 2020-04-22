@@ -18,7 +18,7 @@ export const fetchOneProduct = id => async dispatch => {
 }
 
 // REDUCER
-const singleProductReducer = (state = [], action) => {
+export default function singleProductReducer(state = [], action) {
   switch (action.type) {
     case GOT_SINGLE_PRODUCT:
       return action.singleProduct
@@ -26,5 +26,3 @@ const singleProductReducer = (state = [], action) => {
       return state
   }
 }
-
-export default singleProductReducer

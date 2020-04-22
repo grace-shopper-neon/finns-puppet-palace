@@ -9,10 +9,11 @@ class SingleReview extends React.Component {
   }
 
   render() {
-    const title = this.props.title
-    const body = this.props.body
-    const rating = this.props.rating
-    const user = this.props.user
+    const singleReview = this.props.review
+    const title = singleReview.title
+    const body = singleReview.body
+    const rating = singleReview.rating
+    const user = singleReview.user
 
     return (
       <div className="singleReview">
