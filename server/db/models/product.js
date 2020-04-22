@@ -18,7 +18,6 @@ const Product = db.define('product', {
     defaultValue: '123.jpg'
   },
   color: {
-    // How does this get set up?
     type: Sequelize.ENUM('red', 'blue', 'green', 'orange', 'yellow'),
     defaultValue: 'red'
   },
