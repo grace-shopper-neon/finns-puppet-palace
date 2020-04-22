@@ -29,7 +29,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Displays our All Products as a default home page*/}
-        <Route path="/" component={AllProducts} />
+        <Route component={Login} />
       </Switch>
     )
   }
