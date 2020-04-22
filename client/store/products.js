@@ -18,21 +18,21 @@ export const fetchProducts = () => {
           name: 'Dragon',
           description: 'get three dragons for the price of one!',
           imageUrl: imageUrl,
-          price: '1000'
+          price: 1000
         },
         {
           id: 1,
           name: 'Cat',
           description: 'get three cats for the price of one!',
           imageUrl: imageUrl,
-          price: '10000'
+          price: 10000
         },
         {
           id: 1,
           name: 'Dog',
           description: 'get three dogs for the price of one!',
           imageUrl: imageUrl,
-          price: '40000'
+          price: 40000
         }
       ]
 

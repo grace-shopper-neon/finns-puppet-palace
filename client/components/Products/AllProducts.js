@@ -27,7 +27,12 @@ export class AllProducts extends React.Component {
                   <div className="card">
                     <img className="img-fluid" src={product.imageUrl} />
                     <h3 className="card-title">{product.name}</h3>
-                    <h5 className="card-subtitle">{product.price}</h5>
+                    <h5 className="card-subtitle">{`${(
+                      product.price / 100
+                    ).toLocaleString('en-US', {
+                      style: 'currency',
+                      currency: 'USD'
+                    })}`}</h5>
                     <p>{product.description}</p>
                   </div>
                 </div>
