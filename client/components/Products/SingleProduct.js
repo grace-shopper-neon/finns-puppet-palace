@@ -17,7 +17,7 @@ class SingleProduct extends React.Component {
     const price = singleProduct.price || 0
 
     return (
-      <div>
+      <div className="singleProduct">
         <h1 className="productName">{name}</h1>
         <img src={imageUrl} className="productImage" />
         <h2>
