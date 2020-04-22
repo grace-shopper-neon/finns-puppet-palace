@@ -25,7 +25,7 @@ const Product = db.define("product", {
     type: Sequelize.ENUM('pig', 'dog', 'cat', 'penguin', 'alligator'),
     allowNull: false
   },
-  price: {
+  price: { // needs to be in cents, can use dinero.js library potentially. Or some other conversion parsing/parsing library through npm.
     type: Sequelize.INTEGER,
     allowNull: false
   },
