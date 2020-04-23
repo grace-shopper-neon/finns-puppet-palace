@@ -7,7 +7,7 @@ import SingleReview from '../SingleReview'
 
 class SingleProduct extends React.Component {
   componentDidMount() {
-    console.log(this.props.match.params.id)
+    // console.log(this.props.match.params.id)
     this.props.getSingleProduct(Number(this.props.match.params.id))
   }
 
@@ -33,7 +33,8 @@ class SingleProduct extends React.Component {
         <button type="button" className="btn">
           Add To Cart
         </button>
-        <SingleReview />
+        {/* <SingleReview /> */}
+        <AllReviews />
       </div>
     )
   }

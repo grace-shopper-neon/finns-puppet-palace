@@ -9,6 +9,7 @@ class AllReviews extends React.Component {
   }
 
   render() {
+    console.log(this.props.reviews)
     return (
       <div className="allReviews">
         {this.props.reviews.map(review => (

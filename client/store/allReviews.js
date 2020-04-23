@@ -23,7 +23,7 @@ export const fetchReviews = () => {
 export default function allReviewsReducer(state = [], action) {
   switch (action.type) {
     case SET_REVIEWS:
-      return [...state, action.reviews]
+      return [...state, ...action.reviews]
     default:
       return state
   }
