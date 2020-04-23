@@ -1,18 +1,18 @@
 import axios from 'axios'
 
 // ACTION TYPES
-const SET_REVIEWS = 'SET_REVIEWS'
+const GET_PRODUCT_REVIEWS = 'GET_PRODUCT_REVIEWS'
 
 // ACTION CREATORS
 const setReviews = reviews => {
   return {
-    type: SET_REVIEWS,
+    type: GET_PRODUCT_REVIEWS,
     reviews
   }
 }
 
 // THUNKS
-export const fetchReviews = id => {
+export const fetchProductReviews = id => {
   return async function(dispatch) {
     const {data} = await axios.get(`/api/reviews/product/${id}`)
     dispatch(setReviews(data))
@@ -22,8 +22,8 @@ export const fetchReviews = id => {
 // REDUCER
 export default function allReviewsReducer(state = [], action) {
   switch (action.type) {
-    case SET_REVIEWS:
-      return [...state, ...action.reviews]
+    case GET_PRODUCT_REVIEWS:
+      return action.reviews
     default:
       return state
   }

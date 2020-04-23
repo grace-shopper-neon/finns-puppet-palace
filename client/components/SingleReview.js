@@ -1,64 +1,30 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {fetchOneReview} from '../store/singleReview'
 
-const dummy = {
-  id: 2,
-  rating: 2,
-  description:
-    'Consequuntur cum occaecati magnam quia aut. Facere neque necessitatibus eius quo eius debitis. Quae est commodi accusantium tenetur impedit doloribus natus et praesentium.',
-  createdAt: '2020-04-22T23:16:56.635Z',
-  updatedAt: '2020-04-22T23:16:56.635Z',
-  userId: 9,
-  productId: 1,
-  user: {
-    id: 9,
-    fullName: 'Juvenal Leannon',
-    email: 'Leila6@hotmail.com',
-    isAdmin: false,
-    googleId: null,
-    createdAt: '2020-04-22T23:16:56.554Z',
-    updatedAt: '2020-04-22T23:16:56.554Z'
-  }
-}
-class SingleReview extends React.Component {
-  componentDidMount() {
-    this.props.getSingleReview(1)
-  }
+export default function SingleReview(props) {
+  const review = props.review
+  const stars = []
 
-  render() {
-    // const singleReview = this.props.
-    // console.log(this.props.getSingleReview(2))
-    const singleReview = this.props.singleReview
-    // console.log(this.props, 'PROPP')f
-    // const title = singleReview.title
-    // const body = singleReview.body
-    // const rating = singleReview.rating
-    // const user = singleReview.user
-
-    return (
-      <div className="singleReview">
-        {/* <h3>{title}</h3> */}
-        <br></br>
-        <Link to={`/users/${dummy.user.id}`}>{dummy.user.fullName}</Link>
-        <h4>Rating: {dummy.rating}</h4>
-        <p>{dummy.description}</p>
-      </div>
+  for (let i = 0; i < props.review.rating; i++) {
+    stars.push(
+      <i className="fas fa-star fa-spin" style={{color: '#fcdb03'}} key={i}></i>
     )
   }
-}
 
-const mapState = state => {
-  return {
-    singleReview: state.singleReview
+  for (let i = 0; i < 5 - props.review.rating; i++) {
+    stars.push(
+      <i className="fa fa-star-o" style={{color: '#fcdb03'}} key={i}></i>
+    )
   }
-}
 
-const mapDispatch = dispatch => {
-  return {
-    getSingleReview: id => dispatch(fetchOneReview(id))
-  }
+  return (
+    <div className="singleReview" key={review.id}>
+      <br></br>
+      <Link to={`/users/${review.user.id}`}>{review.user.fullName}</Link>
+      <h4>Rating: {review.rating}</h4>
+      {stars}
+      <p>{review.description}</p>
+      productId:{review.productId}
+    </div>
+  )
 }
-
-export default connect(mapState, mapDispatch)(SingleReview)
