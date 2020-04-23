@@ -3,24 +3,49 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchOneReview} from '../store/singleReview'
 
+const dummy = {
+  id: 2,
+  rating: 2,
+  description:
+    'Consequuntur cum occaecati magnam quia aut. Facere neque necessitatibus eius quo eius debitis. Quae est commodi accusantium tenetur impedit doloribus natus et praesentium.',
+  createdAt: '2020-04-22T23:16:56.635Z',
+  updatedAt: '2020-04-22T23:16:56.635Z',
+  userId: 9,
+  productId: 1,
+  user: {
+    id: 9,
+    fullName: 'Juvenal Leannon',
+    email: 'Leila6@hotmail.com',
+    isAdmin: false,
+    googleId: null,
+    createdAt: '2020-04-22T23:16:56.554Z',
+    updatedAt: '2020-04-22T23:16:56.554Z'
+  }
+}
 class SingleReview extends React.Component {
   componentDidMount() {
-    this.props.getSingleReview(Number(this.props.match.params.id))
+    // this.props.getSingleReview(Number(this.props.match.params.id))
+    this.props.getSingleReview(1)
+    console.log(this.props, 'asdf')
   }
 
   render() {
-    const singleReview = this.props.review
-    const title = singleReview.title
-    const body = singleReview.body
-    const rating = singleReview.rating
-    const user = singleReview.user
+    // const singleReview = this.props.
+    // console.log(this.props.getSingleReview(2))
+    const singleReview = this.props.singleReview
+    console.log(this.props)
+    // const title = singleReview.title
+    // const body = singleReview.body
+    // const rating = singleReview.rating
+    // const user = singleReview.user
 
     return (
       <div className="singleReview">
-        <h3>{title}</h3>
-        <Link to={`/users/${user.id}`}>{user.fullName}</Link>
-        <h4>{rating}</h4>
-        <p>{body}</p>
+        {/* <h3>{title}</h3> */}
+        <br></br>
+        <Link to={`/users/${dummy.user.id}`}>{dummy.user.fullName}</Link>
+        <h4>Rating: {dummy.rating}</h4>
+        <p>{dummy.description}</p>
       </div>
     )
   }

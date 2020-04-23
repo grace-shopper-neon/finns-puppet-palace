@@ -12,7 +12,7 @@ const gotSingleReview = singleReview => {
 }
 
 // THUNKS
-export const fetchOneProduct = id => async dispatch => {
+export const fetchOneReview = id => async dispatch => {
   const {data} = await axios.get(`/api/reviews/${id}`)
   dispatch(gotSingleReview(data))
 }

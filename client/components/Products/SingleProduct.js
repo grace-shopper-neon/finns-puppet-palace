@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 import {fetchOneProduct} from '../../store/singleProduct'
 import AllReviews from '../AllReviews'
+import SingleReview from '../SingleReview'
 
 class SingleProduct extends React.Component {
   componentDidMount() {
@@ -32,7 +33,7 @@ class SingleProduct extends React.Component {
         <button type="button" className="btn">
           Add To Cart
         </button>
-        {/* <AllReviews key={this.props.id} /> */}
+        <SingleReview />
       </div>
     )
   }
