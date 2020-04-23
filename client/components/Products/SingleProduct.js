@@ -4,8 +4,7 @@ import {fetchOneProduct} from '../../store/singleProduct'
 
 class SingleProduct extends React.Component {
   componentDidMount() {
-    console.log(this.props.match.params.id)
-    this.props.getSingleProduct(Number(this.props.match.params.id))
+    this.props.getSingleProduct(Number(this.props.match.params.productId))
   }
 
   render() {
@@ -36,7 +35,8 @@ class SingleProduct extends React.Component {
   }
 }
 
-const mapState = state => {
+// eslint-disable-next-line no-unused-vars
+const mapState = (state, ownProps) => {
   return {
     singleProduct: state.singleProduct
   }
