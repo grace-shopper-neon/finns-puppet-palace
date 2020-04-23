@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCartOrders} from '../../store/cart'
+import SingleOrderList from './SingleOrderList'
 
 export class Cart extends React.Component {
   componentDidMount() {
@@ -17,9 +18,11 @@ export class Cart extends React.Component {
         <div id="orderLists">
           {this.props.cartOrderLists.map(order => {
             return (
-              <div key={order.id}>
-                <div>{order.quantity}</div>
-              </div>
+              <SingleOrderList
+                key={order.id}
+                quantity={order.quantity}
+                productId={order.productId}
+              />
             )
           })}
         </div>

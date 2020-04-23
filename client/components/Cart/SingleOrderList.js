@@ -1,25 +1,29 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {fetchOneProduct} from '../../store/singleProduct'
 
-export default function SingleOrderList(props) {
-  const orderList = props.orderList
-  return (
-    //added classNames that are used in Bootstrap for a demo .. do not remove
-    <div className="card-body" key={orderList.id}>
-      <div className="card">
-        <img className="img-fluid" src={orderList.imageUrl} />
-        <h3 className="card-title">{orderList.name}</h3>
-        <h5 className="card-subtitle">{`${(
-          orderList.price / 100
-        ).toLocaleString('en-US', {
-          style: 'currency',
-          currency: 'USD'
-        })}`}</h5>
-        <p>{orderList.description}</p>
-        <Link to={`/products/${product.id}`} className="card-link">
-          More Details
-        </Link>
+export class SingleOrderList extends React.Component {
+  componentDidMount() {
+    this.props.getSingleProduct(this.props.productId)
+  }
+  render() {
+    return (
+      <div>
+        <div>{this.props.product.name}</div>
+        <div>{this.props.quantity}</div>
       </div>
-    </div>
-  )
+    )
+  }
 }
+
+// eslint-disable-next-line no-unused-vars
+const mapState = (state, ownProps) => ({
+  product: state.singleProduct
+})
+
+const mapDispatch = dispatch => ({
+  getSingleProduct: id => dispatch(fetchOneProduct(id))
+})
+
+export default connect(mapState, mapDispatch)(SingleOrderList)
