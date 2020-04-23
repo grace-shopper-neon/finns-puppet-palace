@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router'
 
 function UserList({user}) {
   const authorized = user.isAdmin
@@ -9,7 +10,7 @@ function UserList({user}) {
       <div>{user.fullName}</div>
     </div>
   ) : (
-    <div>You are not authorized to view this page</div>
+    <Redirect to="/home" />
   )
 }
 
