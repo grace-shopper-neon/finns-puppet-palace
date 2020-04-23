@@ -21,8 +21,8 @@ Order.belongsTo(User)
 Product.hasMany(Review)
 Review.belongsTo(Product)
 
-OrderList.hasMany(Product)
-Product.belongsTo(OrderList)
+Product.hasMany(OrderList)
+OrderList.belongsTo(Product)
 
 Order.hasMany(OrderList)
 OrderList.belongsTo(Order)
