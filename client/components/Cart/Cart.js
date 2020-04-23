@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-export class Cart extends React.Component {
+export default class Cart extends React.Component {
   componentDidMount() {}
 
   render() {
