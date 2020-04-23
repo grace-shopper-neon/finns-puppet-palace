@@ -22,4 +22,16 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+router.get('/product/:id', async (req, res, next) => {
+  try {
+    const review = await Review.findAll({
+      where: {productId: req.params.id},
+      include: [User]
+    })
+    res.send(review)
+  } catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router

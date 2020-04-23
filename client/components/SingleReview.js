@@ -24,16 +24,14 @@ const dummy = {
 }
 class SingleReview extends React.Component {
   componentDidMount() {
-    // this.props.getSingleReview(Number(this.props.match.params.id))
     this.props.getSingleReview(1)
-    console.log(this.props, 'asdf')
   }
 
   render() {
     // const singleReview = this.props.
     // console.log(this.props.getSingleReview(2))
     const singleReview = this.props.singleReview
-    console.log(this.props)
+    // console.log(this.props, 'PROPP')f
     // const title = singleReview.title
     // const body = singleReview.body
     // const rating = singleReview.rating

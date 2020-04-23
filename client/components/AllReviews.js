@@ -1,19 +1,24 @@
 import React from 'react'
-import SingleReview from './SingleReview'
 import {connect} from 'react-redux'
 import {fetchReviews} from '../store/allReviews'
+import {Link} from 'react-router-dom'
 
 class AllReviews extends React.Component {
   componentDidMount() {
-    this.props.getReviews()
+    this.props.getReviews(1)
   }
 
   render() {
-    console.log(this.props.reviews)
     return (
       <div className="allReviews">
         {this.props.reviews.map(review => (
-          <SingleReview key={review.id} review={review} />
+          <div className="singleReview" key={review.id}>
+            <br></br>
+            <Link to={`/users/${review.user.id}`}>{review.user.fullName}</Link>
+            <h4>Rating: {review.rating}</h4>
+            <p>{review.description}</p>
+            rid:{review.productId}
+          </div>
         ))}
       </div>
     )
@@ -22,13 +27,14 @@ class AllReviews extends React.Component {
 
 const mapState = state => {
   return {
-    reviews: state.reviews
+    reviews: state.reviews,
+    productId: state.productId
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    getReviews: () => dispatch(fetchReviews())
+    getReviews: productId => dispatch(fetchReviews(productId))
   }
 }
 

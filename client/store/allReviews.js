@@ -12,9 +12,9 @@ const setReviews = reviews => {
 }
 
 // THUNKS
-export const fetchReviews = () => {
+export const fetchReviews = id => {
   return async function(dispatch) {
-    const {data} = await axios.get('/api/reviews')
+    const {data} = await axios.get(`/api/reviews/product/${id}`)
     dispatch(setReviews(data))
   }
 }

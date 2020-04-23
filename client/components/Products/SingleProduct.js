@@ -23,18 +23,16 @@ class SingleProduct extends React.Component {
         <h1 className="productName">{name}</h1>
         <img src={imageUrl} className="productImage" />
         <h2>
-          {' '}
           {(price / 100).toLocaleString('en-US', {
             style: 'currency',
             currency: 'USD'
-          })}{' '}
+          })}
         </h2>
         <div className="productDescription">{description}</div>
         <button type="button" className="btn">
           Add To Cart
         </button>
-        {/* <SingleReview /> */}
-        <AllReviews />
+        <AllReviews productId={singleProduct.id} />
       </div>
     )
   }
