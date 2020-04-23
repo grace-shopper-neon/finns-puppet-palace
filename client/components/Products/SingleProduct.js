@@ -35,6 +35,7 @@ class SingleProduct extends React.Component {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 const mapState = (state, ownProps) => {
   return {
     singleProduct: state.singleProduct
