@@ -9,7 +9,8 @@ import singleProduct from './singleProduct'
 const reducer = combineReducers({
   user,
   products: productsReducer,
-  singleProduct: singleProduct
+  singleProduct: singleProduct.
+  // error: errorReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

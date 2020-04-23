@@ -32,6 +32,9 @@ async function seed() {
     orderLists.map(o => OrderList.create(o))
   )
 
+  // REVIEW: are associations seeded from dummy-data?
+
+
   console.log(`seeded ${seededUsers.length} users`)
   console.log(`seeded ${seededReviews.length} reviews`)
   console.log(`seeded ${seededCarts.length} carts`)

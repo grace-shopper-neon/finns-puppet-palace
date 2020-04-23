@@ -9,6 +9,7 @@ export default function ProductCard(props) {
       <div className="card">
         <img className="img-fluid" src={product.imageUrl} />
         <h3 className="card-title">{product.name}</h3>
+        {/* REVIEW: nice use of built-in currency formatter: consider encapsulating this in a `util/formatCurrency.js` utilty */}
         <h5 className="card-subtitle">{`${(product.price / 100).toLocaleString(
           'en-US',
           {
