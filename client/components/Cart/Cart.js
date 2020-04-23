@@ -5,6 +5,7 @@ export default class Cart extends React.Component {
   componentDidMount() {}
 
   render() {
+    const cartId = 1
     return (
       <div>
         <h1>Your Cart</h1>
