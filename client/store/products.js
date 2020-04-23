@@ -12,6 +12,8 @@ export const fetchProducts = () => {
       const {data} = await Axios.get('/api/products')
       dispatch(setProducts(data))
     } catch (err) {
+      dispatch(setError(err))
+      // REVIEW: errors
       console.error(err)
     }
   }

@@ -13,6 +13,7 @@ const gotSingleProduct = singleProduct => {
 
 // THUNKS
 export const fetchOneProduct = id => async dispatch => {
+  // REVIEW: error handling
   const {data} = await axios.get(`/api/products/${id}`)
   dispatch(gotSingleProduct(data))
 }

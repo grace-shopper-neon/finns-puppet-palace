@@ -1,3 +1,4 @@
+// REVIEW: case in/sensitivity for module names
 const Faker = require('Faker')
 
 // * order here matters - e.g. we don't know how to randomize user ids for reviews if users don't exist yet
@@ -23,6 +24,7 @@ const orderLists = generateOrderLists(50)
 function createRandomizerFrom(arr, offset = 0) {
   return (getValue = null) => {
     // an arg 'value' returns a value instead of index
+    // REVIEW: faker.random.arrayElement would obey seed settings
     const i = Math.floor(Math.random() * arr.length) + offset
     return getValue === 'value' ? arr[i] : i
   }

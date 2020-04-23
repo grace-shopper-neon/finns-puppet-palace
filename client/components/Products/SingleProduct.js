@@ -10,6 +10,8 @@ class SingleProduct extends React.Component {
   render() {
     const singleProduct = this.props.singleProduct
     console.log(singleProduct)
+    // REVIEW: consider what should be shown when the product hasn't loaded yet.
+    // maybe: https://www.npmjs.com/package/react-spinners (there are many such packages available)
     const name = singleProduct.name || ' '
     const imageUrl = singleProduct.imageUrl || ' '
     const description = singleProduct.description || ' '

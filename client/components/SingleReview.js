@@ -9,6 +9,7 @@ class SingleReview extends React.Component {
   }
 
   render() {
+    // REVIEW: these props vs singleReview prop?
     const title = this.props.title
     const body = this.props.body
     const rating = this.props.rating
