@@ -100,7 +100,6 @@ const Navbar = ({handleClick, isLoggedIn}) => {
   )
 }
 
-
 /**
  * CONTAINER
  */
