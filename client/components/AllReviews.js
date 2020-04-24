@@ -11,9 +11,42 @@ class AllReviews extends React.Component {
   }
 
   render() {
+    const reviews = this.props.reviews
+
+    const averageRating =
+      reviews.reduce((accum, review) => {
+        return review.rating + accum
+      }, 0) / reviews.length
+
+    const averageRounded = Math.round(averageRating)
+
+    let averageStars = []
+
+    for (let i = 0; i < averageRounded; i++) {
+      averageStars.push(
+        <i className="fas fa-star fa-lg" style={{color: '#fcdb03'}} key={i}></i>
+      )
+    }
+
+    for (let i = 0; i < 5 - averageRounded; i++) {
+      averageStars.push(
+        <i
+          className="fa fa-star-o fa-lg"
+          style={{color: '#fcdb03'}}
+          key={i + 5}
+        ></i>
+      )
+    }
+
     return (
-      <div className="allReviews ">
-        {this.props.reviews.map(review => {
+      <div className="allReviews">
+        <br></br>
+        <div className="averageRating">
+          <h4> AVERAGE RATING: {averageRating} </h4>
+          {averageStars}
+        </div>
+        <h2 className="text-center">Reviews of this product</h2>
+        {reviews.map(review => {
           return <SingleReview key={review.id} review={review} />
         })}
       </div>
