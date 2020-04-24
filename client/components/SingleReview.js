@@ -1,40 +1,77 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {fetchOneReview} from '../store/singleReview'
 
-class SingleReview extends React.Component {
-  componentDidMount() {
-    this.props.getSingleReview(Number(this.props.match.params.id))
-  }
+function getH(date) {
+  return (date + 24) % 12 || 12
+}
 
-  render() {
-    const title = this.props.title
-    const body = this.props.body
-    const rating = this.props.rating
-    const user = this.props.user
+export default function SingleReview(props) {
+  const review = props.review
+  const stars = []
 
-    return (
-      <div className="singleReview">
-        <h3>{title}</h3>
-        <Link to={`/users/${user.id}`}>{user.fullName}</Link>
-        <h4>{rating}</h4>
-        <p>{body}</p>
-      </div>
+  for (let i = 0; i < 5 - props.review.rating; i++) {
+    stars.push(
+      <i
+        className="fa fa-star-o float-right"
+        style={{color: '#fcdb03'}}
+        key={i + 5}
+      ></i>
     )
   }
-}
 
-const mapState = state => {
-  return {
-    singleReview: state.singleReview
+  for (let i = 0; i < props.review.rating; i++) {
+    stars.push(
+      <i
+        className="fas fa-star float-right"
+        style={{color: '#fcdb03'}}
+        key={i}
+      ></i>
+    )
   }
-}
 
-const mapDispatch = dispatch => {
-  return {
-    getSingleReview: id => dispatch(fetchOneReview(id))
-  }
-}
+  const dateUpdated = new Date(review.updatedAt)
 
-export default connect(mapState, mapDispatch)(SingleReview)
+  return (
+    <div className="container">
+      <div className="card">
+        <div className="card-body">
+          <div className="row">
+            <div className="col-md-2">
+              <img
+                src="https://image.ibb.co/jw55Ex/def_face.jpg"
+                className="img img-rounded img-fluid"
+              />
+              <p className="text-secondary text-center">
+                {dateUpdated.toDateString()}
+                <br></br>
+                {`${getH(
+                  dateUpdated.getHours()
+                )}:${dateUpdated.getMinutes()}:${dateUpdated.getSeconds()}`}
+              </p>
+            </div>
+            <div className="col-md-10">
+              <p>
+                <strong>
+                  <Link to={`/users/${review.user.id}`}>
+                    {review.user.fullName}
+                  </Link>
+                </strong>
+                {stars}
+              </p>
+              <div className="clearfix"></div>
+              <p>{review.description}</p>
+              <p>
+                <a className="float-right btn btn-outline-primary ml-2">
+                  <i className="fa fa-reply"></i> Reply
+                </a>
+                <a className="float-right btn text-white btn-danger">
+                  <i className="fa fa-heart"></i> Like
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
