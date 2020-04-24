@@ -12,12 +12,19 @@ export default class SingleOrderList extends React.Component {
     return (
       <div id="cartOrderList" className="list-group-item">
         <div>
-          <p id="orderProductName">{product.name}</p>
-          <img
-            id="cartImage"
-            className="img-thumbnail"
-            src={product.imageUrl}
-          ></img>
+          <Link
+            to={`/products/${product.id}`}
+            style={{textDecoration: 'none', color: 'black'}}
+          >
+            <p id="orderProductName">{product.name}</p>
+          </Link>
+          <Link to={`/products/${product.id}`}>
+            <img
+              id="cartImage"
+              className="img-thumbnail"
+              src={product.imageUrl}
+            ></img>
+          </Link>
         </div>
         <p id="orderQuantity">{order.quantity}</p>
         <p id="orderTotal">{priceConv(order.quantity * product.price)}</p>
