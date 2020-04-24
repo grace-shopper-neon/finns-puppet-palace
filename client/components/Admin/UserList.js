@@ -6,7 +6,6 @@ import {fetchUsers} from '../../store/users'
 
 class UserList extends React.Component {
   componentDidMount() {
-    // console.log('userlist', this.props)
     this.props.getUsers()
   }
   render() {
@@ -27,7 +26,12 @@ class UserList extends React.Component {
 }
 
 function SingleUser({user}) {
-  return <div>{user.email}</div>
+  return (
+    <div>
+      <div>{user.fullName}</div>
+      <div>{user.email}</div>
+    </div>
+  )
 }
 
 const mapState = ({user, users}) => ({
