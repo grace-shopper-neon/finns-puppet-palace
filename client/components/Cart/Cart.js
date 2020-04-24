@@ -14,7 +14,18 @@ export class Cart extends React.Component {
     return (
       <div>
         <h1>Your Cart</h1>
-        <div id="orderLists">
+        <div id="cartOrderList" className="list-group-item">
+          <div>
+            <b>Product</b>
+          </div>
+          <p id="orderQuantity">
+            <b>Quantity</b>
+          </p>
+          <p id="orderTotal">
+            <b>Total Price</b>
+          </p>
+        </div>
+        <div id="orderLists" className="list-group">
           {this.props.cartOrderLists.map(order => {
             return <SingleOrderList key={order.id} order={order} />
           })}
