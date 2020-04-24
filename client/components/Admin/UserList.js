@@ -12,12 +12,23 @@ class UserList extends React.Component {
     const {user, users} = this.props
     const authorized = user.isAdmin
     return authorized ? (
-      <div>
+      <div className="container">
         <h1>This is for admins only</h1>
         <div>{user.fullName}</div>
-        <div>
-          {users ? users.map(u => <SingleUser key={u.id} user={u} />) : null}
-        </div>
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users
+              ? users.map((u, i) => <SingleUser num={i} key={u.id} user={u} />)
+              : null}
+          </tbody>
+        </table>
       </div>
     ) : (
       <Redirect to="/home" />
@@ -25,12 +36,13 @@ class UserList extends React.Component {
   }
 }
 
-function SingleUser({user}) {
+function SingleUser({user, num}) {
   return (
-    <div>
-      <div>{user.fullName}</div>
-      <div>{user.email}</div>
-    </div>
+    <tr>
+      <th scope="row">{num}</th>
+      <td>{user.fullName}</td>
+      <td>{user.email}</td>
+    </tr>
   )
 }
 
