@@ -15,6 +15,7 @@ export const fetchSingleUser = id => {
     try {
       const {data} = await axios.get(`/api/users/${id}`)
       dispatch(getSingleUser(data))
+      console.log('this is', data)
     } catch (err) {
       console.log(err)
     }
