@@ -10,16 +10,14 @@ class SingleUser extends React.Component {
 
   render() {
     console.log('This is SingleUser data:', this.props)
+    console.log('This is the email', this.props.email)
     const singleUser = this.props.singleUser
-    const fullName = this.props.fullName
-    const email = this.props.email
     const isAdmin = this.props.isAdmin
 
     return (
       <div className="singleUser">
-        <h1 className="fullName">User: {fullName}</h1>
-        <Link to={`/users/${singleUser}`}>{singleUser.fullName}</Link>
-        <h2 className="email">User Email: {email}</h2>
+        <h1 className="fullName">User: {singleUser.fullName}</h1>
+        <h2 className="email">User Email: {singleUser.email}</h2>
         <div className="adminCheck">
           {' '}
           Admin Status: {isAdmin ? 'Admin' : 'Normal User'}
