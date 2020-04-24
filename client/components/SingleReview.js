@@ -30,7 +30,6 @@ export default function SingleReview(props) {
   }
 
   const dateUpdated = new Date(review.updatedAt)
-  console.log(review)
 
   return (
     <div className="container">
