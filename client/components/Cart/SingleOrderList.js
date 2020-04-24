@@ -1,29 +1,16 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {fetchOneProduct} from '../../store/singleProduct'
 
-export class SingleOrderList extends React.Component {
-  componentDidMount() {
-    this.props.getSingleProduct(this.props.productId)
-  }
+export default class SingleOrderList extends React.Component {
   render() {
+    const order = this.props.order
+    const product = this.props.order.product
+
     return (
       <div>
-        <div>{this.props.product.name}</div>
-        <div>{this.props.quantity}</div>
+        <div>{product.name}</div>
+        <div>{order.quantity}</div>
       </div>
     )
   }
 }
-
-// eslint-disable-next-line no-unused-vars
-const mapState = (state, ownProps) => ({
-  product: state.singleProduct
-})
-
-const mapDispatch = dispatch => ({
-  getSingleProduct: id => dispatch(fetchOneProduct(id))
-})
-
-export default connect(mapState, mapDispatch)(SingleOrderList)
