@@ -44,8 +44,15 @@ const Navbar = ({handleClick, isLoggedIn}) => {
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
                 <a className="nav-link" href="#">
-                  Home <span className="sr-only">(current)</span>
+                  <Link to="/">Home</Link>
                 </a>
+              </li>
+              <li className="nav-item">
+                <Link to="/cart">
+                  <a className="nav-link" href="#">
+                    Cart
+                  </a>
+                </Link>
               </li>
               <li className="nav-item">
                 <Link to="/signup">
