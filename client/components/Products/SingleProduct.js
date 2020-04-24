@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchOneProduct} from '../../store/singleProduct'
+import AllReviews from '../AllReviews'
+import priceConv from '../../utility/priceConversion'
 
 class SingleProduct extends React.Component {
   componentDidMount() {
@@ -9,7 +11,6 @@ class SingleProduct extends React.Component {
 
   render() {
     const singleProduct = this.props.singleProduct
-    console.log(singleProduct)
     const name = singleProduct.name || ' '
     const imageUrl = singleProduct.imageUrl || ' '
     const description = singleProduct.description || ' '
@@ -19,17 +20,12 @@ class SingleProduct extends React.Component {
       <div className="singleProduct">
         <h1 className="productName">{name}</h1>
         <img src={imageUrl} className="productImage" />
-        <h2>
-          {' '}
-          {(price / 100).toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD'
-          })}{' '}
-        </h2>
+        <h2> {priceConv(price)} </h2>
         <div className="productDescription">{description}</div>
         <button type="button" className="btn">
           Add To Cart
         </button>
+        <AllReviews />
       </div>
     )
   }

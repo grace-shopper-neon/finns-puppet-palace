@@ -5,7 +5,6 @@ import ProductCard from './ProductCard'
 
 export class AllProducts extends React.Component {
   componentDidMount() {
-    console.log(this.props.getProducts)
     this.props.getProducts()
   }
 
