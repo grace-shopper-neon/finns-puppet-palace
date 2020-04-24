@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCartOrders} from '../../store/cart'
 import SingleOrderList from './SingleOrderList'
+import ProductCard from '../Products/ProductCard'
+import priceConv from '../../utility/priceConversion'
 
 export class Cart extends React.Component {
   async componentDidMount() {
@@ -30,15 +32,26 @@ export class Cart extends React.Component {
             return <SingleOrderList key={order.id} order={order} />
           })}
         </div>
-        <div>
+        <div className="list-group-item border-top-0 subtotal">
           {/* Use a reduce function to iterate over all orders and get their total price */}
-          Subtotal:
+
+          <b>
+            Subtotal:{' '}
+            {priceConv(
+              this.props.cartOrderLists
+                .map(order => order.quantity * order.product.price)
+                .reduce(
+                  (accumulator, currentValue) => accumulator + currentValue,
+                  0
+                )
+            )}
+          </b>
         </div>
-        <div>Checkout</div>
         <div>
           {/* Link to AllProducts page */}
           Continue Shopping
         </div>
+        <div>Checkout</div>
       </div>
     )
   }

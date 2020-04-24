@@ -45,3 +45,7 @@ form div {
   text-align: center;
   font-weight: bold;
 }
+
+.subtotal {
+  text-align: end;
+}
