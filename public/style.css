@@ -19,3 +19,33 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+#cartImage {
+  width: 100px;
+  height: 100px;
+}
+
+#cartOrderList {
+  display: flex;
+  justify-content: space-between;
+}
+
+#orderTotal {
+  flex-grow: 0.5;
+  text-align: end;
+  align-self: center;
+}
+
+#orderQuantity {
+  text-align: end;
+  align-self: center;
+}
+
+#orderProductName {
+  text-align: center;
+  font-weight: bold;
+}
+
+.subtotal {
+  text-align: end;
+}
