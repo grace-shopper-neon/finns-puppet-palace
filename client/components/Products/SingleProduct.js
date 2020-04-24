@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchOneProduct} from '../../store/singleProduct'
+import AllReviews from '../AllReviews'
 import priceConv from '../../utility/priceConversion'
 
 class SingleProduct extends React.Component {
@@ -10,7 +11,6 @@ class SingleProduct extends React.Component {
 
   render() {
     const singleProduct = this.props.singleProduct
-    console.log(singleProduct)
     const name = singleProduct.name || ' '
     const imageUrl = singleProduct.imageUrl || ' '
     const description = singleProduct.description || ' '
@@ -25,6 +25,7 @@ class SingleProduct extends React.Component {
         <button type="button" className="btn">
           Add To Cart
         </button>
+        <AllReviews />
       </div>
     )
   }
