@@ -2,8 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCartOrders} from '../../store/cart'
 import SingleOrderList from './SingleOrderList'
-import ProductCard from '../Products/ProductCard'
 import priceConv from '../../utility/priceConversion'
+import {Link} from 'react-router-dom'
 
 export class Cart extends React.Component {
   async componentDidMount() {
@@ -48,10 +48,23 @@ export class Cart extends React.Component {
           </b>
         </div>
         <div>
-          {/* Link to AllProducts page */}
-          Continue Shopping
+          <div>
+            {/* Link to AllProducts page */}
+            <button type="button" className="btn btn-primary btn-lg btn-block">
+              Checkout
+            </button>
+          </div>
+          <div>
+            <button
+              type="button"
+              className="btn btn-secondary btn-lg btn-block mt-3"
+            >
+              <Link to="/" style={{textDecoration: 'none', color: '#FFF'}}>
+                Continue Shopping
+              </Link>
+            </button>
+          </div>
         </div>
-        <div>Checkout</div>
       </div>
     )
   }
