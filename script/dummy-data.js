@@ -1,4 +1,4 @@
-const Faker = require('Faker')
+const Faker = require('faker')
 
 // * order here matters - e.g. we don't know how to randomize user ids for reviews if users don't exist yet
 /* DUMMY DATA TO EXPORT ------------------------------ */
