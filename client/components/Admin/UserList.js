@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Redirect} from 'react-router'
+import {Redirect, Link} from 'react-router-dom'
 
 import {fetchUsers} from '../../store/users'
 
@@ -39,7 +39,9 @@ function SingleUser({user, num}) {
   return (
     <tr>
       <th scope="row">{num}</th>
-      <td>{user.fullName}</td>
+      <td>
+        <Link to={`/users/${user.id}`}>{user.fullName}</Link>
+      </td>
       <td>{user.email}</td>
     </tr>
   )
