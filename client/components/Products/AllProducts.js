@@ -14,16 +14,35 @@ export class AllProducts extends React.Component {
   }
 
   render() {
+    const page = queryString.parse(this.props.location.search).page || 1
+    console.log(page)
     return (
-      <Container fluid="md">
-        <Row className="show-grid">
-          {this.props.products.map(product => (
-            <Col md={3} key={product.id}>
-              <ProductCard product={product} />
-            </Col>
-          ))}
-        </Row>
-      </Container>
+      <div>
+        <Container fluid="md">
+          <Row className="show-grid">
+            {this.props.products.map(product => (
+              <Col md={3} key={product.id}>
+                <ProductCard product={product} />
+              </Col>
+            ))}
+          </Row>
+          <nav aria-label="Page navigation example">
+            <ul className="pagination">
+              <li className={page === 1 ? 'page-item disabled' : 'page-item'}>
+                <a className="page-link" href="#">
+                  Previous
+                </a>
+              </li>
+
+              <li className="page-item">
+                <a className="page-link" href="#">
+                  Next
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </Container>
+      </div>
     )
   }
 }
