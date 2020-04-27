@@ -8,7 +8,6 @@ import SingleUser from './SingleUser'
  */
 export const UserHome = props => {
   const {user} = props
-
   return (
     <div>
       <h3>Welcome, {user.fullName}</h3>
