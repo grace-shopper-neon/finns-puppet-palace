@@ -9,7 +9,8 @@ import queryString from 'query-string'
 
 export class AllProducts extends React.Component {
   componentDidMount() {
-    this.props.getProducts()
+    const query = this.props.location.search
+    this.props.getProducts(query)
   }
 
   render() {
@@ -33,7 +34,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => {
   return {
-    getProducts: () => dispatch(fetchProducts())
+    getProducts: query => dispatch(fetchProducts(query))
   }
 }
 
