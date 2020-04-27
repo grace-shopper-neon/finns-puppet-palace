@@ -2,7 +2,9 @@ import React from 'react'
 import {fetchProducts} from '../../store/products'
 import {connect} from 'react-redux'
 import ProductCard from './ProductCard'
-import {Row, Col, Grid} from 'react-bootstrap'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Container from 'react-bootstrap/Container'
 
 export class AllProducts extends React.Component {
   componentDidMount() {
@@ -11,24 +13,15 @@ export class AllProducts extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid mt-5">
-        {/* <div className="card-deck"> */}
-        {this.props.products.map((product, index) =>
-          !((index + 1) % 4) || index === 0 ? (
-            <div className="row">
-              {' '}
-              <div className="col-md-4 cols-sm-6 col-xs-12">
-                <ProductCard key={product.id} product={product} />
-              </div>
-            </div>
-          ) : (
-            <div className="col-md-4 cols-sm-6 col-xs-12">
-              <ProductCard key={product.id} product={product} />
-            </div>
-          )
-        )}
-        {/* </div> */}
-      </div>
+      <Container fluid="md">
+        <Row className="show-grid">
+          {this.props.products.map(product => (
+            <Col md={3} key={product.id}>
+              <ProductCard product={product} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
     )
   }
 }
