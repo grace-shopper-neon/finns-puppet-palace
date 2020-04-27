@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 function AdminPage(props) {
   const {user} = props
@@ -7,7 +8,10 @@ function AdminPage(props) {
   return (
     <div className="container">
       {authorized ? (
-        <h2>{`${user.fullName}'s Admin Page`}</h2>
+        <div>
+          <h2>{`${user.fullName}'s Admin Page`}</h2>
+          <Link to="/admin/userlist">View Users</Link>
+        </div>
       ) : (
         <div>You do not have access to this page</div>
       )}

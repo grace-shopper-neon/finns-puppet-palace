@@ -13,7 +13,8 @@ class UserList extends React.Component {
     const authorized = user.isAdmin
     return authorized ? (
       <div className="container">
-        <table className="table">
+        <Link to="/admin">Admin Home</Link>
+        <table className="table mt-5">
           <thead>
             <tr>
               <th scope="col">#</th>
