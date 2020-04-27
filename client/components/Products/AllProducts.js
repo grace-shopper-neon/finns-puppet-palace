@@ -15,7 +15,6 @@ export class AllProducts extends React.Component {
 
   render() {
     const page = queryString.parse(this.props.location.search).page || 1
-    console.log(page)
     return (
       <div>
         <Container fluid="md">
@@ -28,7 +27,11 @@ export class AllProducts extends React.Component {
           </Row>
           <nav aria-label="Page navigation example">
             <ul className="pagination">
-              <li className={page === 1 ? 'page-item disabled' : 'page-item'}>
+              <li
+                className={
+                  Number(page) === 1 ? 'page-item disabled' : 'page-item'
+                }
+              >
                 <a className="page-link" href="#">
                   Previous
                 </a>
