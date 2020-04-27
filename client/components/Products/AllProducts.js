@@ -5,6 +5,7 @@ import ProductCard from './ProductCard'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
+import queryString from 'query-string'
 
 export class AllProducts extends React.Component {
   componentDidMount() {
