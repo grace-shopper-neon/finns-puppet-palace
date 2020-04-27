@@ -24,7 +24,9 @@ class UserList extends React.Component {
           </thead>
           <tbody>
             {users
-              ? users.map((u, i) => <SingleUser num={i} key={u.id} user={u} />)
+              ? users.map((u, i) => (
+                  <SingleUser num={i + 1} key={u.id} user={u} />
+                ))
               : null}
           </tbody>
         </table>
