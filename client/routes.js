@@ -35,17 +35,18 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
+        <Route path="/?page=pageNumber" component={AllProducts} />
         {isLoggedIn && (
           <Switch>
-            <Route path="/home" component={UserHome} />
             <Route path="/admin/users" component={UserList} />
             <Route path="/admin/products" component={ProductList} />
-            <Route path="/admin" component={AdminPage} />
+            <Route exact path="/admin" component={AdminPage} />
+            <Route exact path="/home" component={UserHome} />
+            <Route path="/" component={AllProducts} />
           </Switch>
         )}
         {/* Displays our All Products as a default home page*/}
-        <Route path="/?page=pageNumber" component={AllProducts} />
-        <Route path="/" component={AllProducts} />
+        <Route component={AllProducts} />
       </Switch>
     )
   }
