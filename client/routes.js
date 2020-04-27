@@ -38,8 +38,8 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             <Route path="/home" component={UserHome} />
-            <Route path="/admin/productlist" component={ProductList} />
-            <Route path="/admin/userlist" component={UserList} />
+            <Route path="/admin/users" component={UserList} />
+            <Route path="/admin/products" component={ProductList} />
             <Route path="/admin" component={AdminPage} />
           </Switch>
         )}

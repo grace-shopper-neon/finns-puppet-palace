@@ -11,10 +11,10 @@ function AdminPage(props) {
         <div>
           <h2>{`${user.fullName}'s Admin Page`}</h2>
           <div>
-            <Link to="/admin/userlist">View Users</Link>
+            <Link to="/admin/users">View Users</Link>
           </div>
           <div>
-            <Link to="/admin/productlist">View Products</Link>
+            <Link to="/admin/products">View Products</Link>
           </div>
         </div>
       ) : (
