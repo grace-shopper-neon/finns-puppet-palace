@@ -49,3 +49,13 @@ form div {
 .subtotal {
   text-align: end;
 }
+
+/* .card-img {
+  width: 200px !important;
+  height: 200px !important;
+} */
+
+/* .card-img {
+  max-height: 200px !important;
+  min-height: 200px !important;
+} */
