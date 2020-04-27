@@ -1,8 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import priceConv from '../../utility/priceConversion'
+import {fetchProducts} from '../../store/products'
 
 class ProductList extends React.Component {
+  componentDidMount() {
+    this.props.getProducts()
+  }
   render() {
     const {user, products} = this.props
     const authorized = user.isAdmin
@@ -16,7 +21,9 @@ class ProductList extends React.Component {
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Cost</th>
+                  <th scope="col">Animal</th>
+                  <th scope="col">Color</th>
+                  <th scope="col">Price</th>
                 </tr>
               </thead>
               <tbody>
@@ -43,13 +50,20 @@ function SingleProduct({product, num}) {
       <td>
         <Link to={`/products/${product.id}`}>{product.name}</Link>
       </td>
-      <td>{product.cost}</td>
+      <td>{product.animal}</td>
+      <td>{product.color}</td>
+      <td>{priceConv(product.price)}</td>
     </tr>
   )
 }
 
-const mapState = state => ({
-  user: state.user
+const mapState = ({user, products}) => ({
+  user,
+  products
 })
 
-export default connect(mapState)(ProductList)
+const mapDispatch = dispatch => ({
+  getProducts: () => dispatch(fetchProducts())
+})
+
+export default connect(mapState, mapDispatch)(ProductList)
