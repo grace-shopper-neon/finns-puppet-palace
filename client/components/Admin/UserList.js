@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Redirect, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import {fetchUsers} from '../../store/users'
 
@@ -11,26 +11,32 @@ class UserList extends React.Component {
   render() {
     const {user, users} = this.props
     const authorized = user.isAdmin
-    return authorized ? (
+    return (
       <div className="container">
-        <Link to="/admin">Admin Home</Link>
-        <table className="table mt-5">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users
-              ? users.map((u, i) => <SingleUser num={i} key={u.id} user={u} />)
-              : null}
-          </tbody>
-        </table>
+        {authorized ? (
+          <div>
+            <Link to="/admin">Admin Home</Link>
+            <table className="table mt-5">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users
+                  ? users.map((u, i) => (
+                      <SingleUser num={i} key={u.id} user={u} />
+                    ))
+                  : null}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div>You do not have access to this page</div>
+        )}
       </div>
-    ) : (
-      <Redirect to="/home" />
     )
   }
 }
