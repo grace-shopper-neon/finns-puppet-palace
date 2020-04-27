@@ -35,7 +35,8 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Displays our All Products as a default home page*/}
-        <Route component={AllProducts} />
+        <Route path="/?page=pageNumber" component={AllProducts} />
+        <Route path="/" component={AllProducts} />
       </Switch>
     )
   }
