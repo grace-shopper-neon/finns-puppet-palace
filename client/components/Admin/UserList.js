@@ -13,7 +13,6 @@ class UserList extends React.Component {
     const authorized = user.isAdmin
     return authorized ? (
       <div className="container">
-        <h2>{`${user.fullName}'s Admin Page`}</h2>
         <table className="table">
           <thead>
             <tr>
