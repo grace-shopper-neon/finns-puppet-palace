@@ -10,7 +10,12 @@ function AdminPage(props) {
       {authorized ? (
         <div>
           <h2>{`${user.fullName}'s Admin Page`}</h2>
-          <Link to="/admin/userlist">View Users</Link>
+          <div>
+            <Link to="/admin/userlist">View Users</Link>
+          </div>
+          <div>
+            <Link to="/admin/productlist">View Products</Link>
+          </div>
         </div>
       ) : (
         <div>You do not have access to this page</div>
