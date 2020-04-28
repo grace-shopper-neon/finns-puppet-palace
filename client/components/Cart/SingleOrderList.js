@@ -10,15 +10,13 @@ export class SingleOrderList extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
   handleClick() {
-    this.props.deleteOrder(
-      this.props.SingleOrderList.id,
-      this.props.SingleOrderList.quantity
-    )
+    this.props.deleteOrder(this.props.order.id, this.props.order.quantity)
   }
 
   render() {
     const order = this.props.order
     const product = this.props.order.product
+    console.log('single order list', this.props.singleOrderList)
     // const imageUrl =
     //   'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Creative-Tail-Animal-dog.svg/256px-Creative-Tail-Animal-dog.svg.png'
 
@@ -63,7 +61,8 @@ export class SingleOrderList extends React.Component {
 }
 
 const mapState = state => ({
-  singleOrderLists: state.SingleOrderList
+  singleOrderLists: state.SingleOrderList,
+  singleOrderList: state.singleOrderList
 })
 
 const mapDispatch = dispatch => ({
