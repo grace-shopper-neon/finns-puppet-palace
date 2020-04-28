@@ -31,51 +31,44 @@ const Navbar = ({handleClick, isLoggedIn}) => {
         </h3>
       </div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="">
+        <div>
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="#">
+              <div className="nav-link">
                 <Link to="/">Home</Link>
-              </a>
+              </div>
             </li>
             <li className="nav-item">
-              <Link to="/cart">
-                <a className="nav-link" href="#">
-                  Cart
-                </a>
-              </Link>
+              <div className="nav-link">
+                <Link to="/cart"> Cart</Link>
+              </div>
             </li>
             {!isLoggedIn && (
               <li className="nav-item">
-                <Link to="/signup">
-                  <a className="nav-link" href="#">
-                    Sign Up
-                  </a>
-                </Link>
+                <div className="nav-link">
+                  <Link to="/signup">Sign Up</Link>
+                </div>
               </li>
             )}
             {!isLoggedIn && (
               <li className="nav-item">
-                <Link to="/login">
-                  <a className="nav-link" href="#">
-                    Login
-                  </a>
-                </Link>
+                <div className="nav-link">
+                  <Link to="/login">Login</Link>
+                </div>
               </li>
             )}
             {isLoggedIn && (
               <li className="nav-item">
-                {/* The navbar will show these links after you log in */}
-                <Link to="/home">
-                  <a href="#" className="nav-link">
-                    Settings
-                  </a>
-                </Link>
-                <Link to="/">
-                  <a href="#" className="nav-link" onClick={handleClick}>
-                    Logout
-                  </a>
-                </Link>
+                <div className="nav-link">
+                  <Link to="/home">Settings</Link>
+                </div>
+              </li>
+            )}
+            {isLoggedIn && (
+              <li className="nav-item" onClick={handleClick}>
+                <div className="nav-link">
+                  <Link to="/">Logout</Link>
+                </div>
               </li>
             )}
           </ul>
