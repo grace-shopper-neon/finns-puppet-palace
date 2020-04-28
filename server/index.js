@@ -66,17 +66,13 @@ const createApp = () => {
   app.use('/', async (req, res, next) => {
     try {
       if (req.session.cartId) {
-        console.log('inside first if')
         const cart = await db.models.cart.findByPk(req.session.cartId)
         req.cart = cart
-        console.log('end of first if')
         next()
       } else {
-        console.log('inside else')
         const cart = await db.models.cart.create({status: 'inProgress'})
         req.session.cartId = cart.id
         req.cart = cart
-        console.log('end of else')
         next()
       }
     } catch (err) {
