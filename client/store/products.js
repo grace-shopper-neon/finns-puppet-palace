@@ -6,7 +6,7 @@ export const setProducts = products => ({
   products
 })
 
-export const fetchProducts = query => {
+export const fetchProducts = (query = '') => {
   return async dispatch => {
     try {
       const {data} = await Axios.get(`/api/products/${query}`)
