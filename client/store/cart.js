@@ -41,7 +41,7 @@ export default function cartOrderReducer(state = initialState, action) {
   switch (action.type) {
     case SET_CART_ORDER_LISTS:
       return action.orderLists
-    case ADD_ORDER_LIST:
+    case ADD_ORDER_LIST: {
       let newState = state.map(orderList => {
         if (orderList.id === action.orderList.id) {
           return action.orderList
@@ -52,7 +52,7 @@ export default function cartOrderReducer(state = initialState, action) {
       } else {
         return [...state, action.orderList]
       }
-
+    }
     default:
       return state
   }
