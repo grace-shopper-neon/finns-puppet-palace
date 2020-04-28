@@ -40,7 +40,7 @@ class AllReviews extends React.Component {
 
     return (
       <div className="allReviews">
-        <div className="averageRating">
+        <div className="averageRating container">
           <h4> AVERAGE RATING: {averageRating} </h4>
           {averageStars}
         </div>
