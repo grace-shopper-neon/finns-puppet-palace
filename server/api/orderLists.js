@@ -56,4 +56,22 @@ router.put('/', async (req, res, next) => {
   }
 })
 
+router.put('/:id', async (req, res, next) => {
+  try {
+    const orderList = await OrderList.update(
+      {quantity: req.body.quantity - 1},
+      {where: {id: req.params.id}}
+    )
+
+    if (orderList.quantity === 0) {
+      await OrderList.destroy({where: {id: req.params.id}})
+      res.sendStatus('200')
+    } else {
+      res.send(orderList)
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router
