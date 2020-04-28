@@ -7,9 +7,9 @@ export const setCartOrders = orderLists => ({
   orderLists
 })
 
-export const addOrderList = orderList => ({
+export const addOrderList = orderLists => ({
   type: ADD_ORDER_LIST,
-  orderList
+  orderLists
 })
 
 export const fetchCartOrders = () => {
@@ -26,7 +26,6 @@ export const fetchCartOrders = () => {
 export const postOrderList = productId => {
   return async dispatch => {
     try {
-      console.log('id in Thunk', productId)
       const {data} = await Axios.post(`/api/orderLists/`, {productId})
       dispatch(addOrderList(data))
     } catch (err) {
@@ -36,24 +35,13 @@ export const postOrderList = productId => {
 }
 
 const initialState = []
-let update = false
 
 export default function cartOrderReducer(state = initialState, action) {
   switch (action.type) {
     case SET_CART_ORDER_LISTS:
       return action.orderLists
     case ADD_ORDER_LIST: {
-      let newState = state.map(orderList => {
-        if (orderList.id === action.orderList.id) {
-          update = true
-          return action.orderList
-        }
-      })
-      if (update) {
-        return newState
-      } else {
-        return [...state, action.orderList]
-      }
+      return action.orderLists
     }
     default:
       return state

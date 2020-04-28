@@ -16,31 +16,24 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log('id in API Route', req.body.productId)
+    let [orderList, created] = await OrderList.findOrCreate({
+      where: {cartId: req.cart.id, productId: req.body.productId}
+    })
 
-    // let orderList = await OrderList.findAll({where: {cartId: req.cart.id, productId: req.body.productId}, include: Product})[0]
+    if (!created) {
+      const quantity = orderList.quantity + 1
+      orderList = await OrderList.update(
+        {quantity: quantity},
+        {where: {cartId: req.cart.id, productId: req.body.productId}}
+      )
+    }
 
-    // if (orderList) {
-    //   let orderList = await OrderList.update({where: {cartId: req.cart.id, productId: req.body.productId}, include: Product})
-    // } else (!orderList) {
-    //   let orderList = await OrderList.create()
-    // }
+    const orderLists = await OrderList.findAll({
+      where: {cartId: req.cart.id},
+      include: Product
+    })
 
-    // let [orderList, created] = await OrderList.findOrCreate({
-    //   where: {cartId: req.cart.id, productId: req.body.productId},
-    //   include: Product,
-    //   defaults: {quantity: 1}
-    // })
-    // console.log('New OrderList', orderList)
-
-    // if (!created) {
-    //   const quantity = orderList.quantity++
-    //   orderList = await OrderList.update({quantity: quantity})
-    // }
-
-    const orderList = {id: 100, quantity: 1, cartId: 20, productId: 1}
-
-    res.send(orderList)
+    res.send(orderLists)
   } catch (err) {
     next(err)
   }
