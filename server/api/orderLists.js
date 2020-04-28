@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const OrderList = require('../db/models/orderList')
 const Product = require('../db/models/product')
-
+const Cart = require('../db/models/cart')
 router.get('/', async (req, res, next) => {
   try {
     const orderLists = await OrderList.findAll({
@@ -34,6 +34,25 @@ router.post('/', async (req, res, next) => {
     })
 
     res.send(orderLists)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put('/', async (req, res, next) => {
+  try {
+    if (req.user) {
+      await OrderList.update(
+        {orderId: req.body.orderId},
+        {where: {cartId: req.cart.id}}
+      )
+    }
+
+    const newCart = await Cart.create()
+    req.session.cartId = newCart.id
+    req.cart = newCart
+
+    res.sendStatus('200')
   } catch (err) {
     next(err)
   }

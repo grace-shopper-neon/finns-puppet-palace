@@ -19,10 +19,13 @@ export const postOrder = () => {
 
 const initialState = []
 
-export default function cartOrderReducer(state = initialState, action) {
+export default function orderHistoryReducer(state = initialState, action) {
   switch (action.type) {
     case CREATE_ORDER_HISTORY:
-      return action.order
+      if (action.order) {
+        return action.order
+      }
+      return state
     default:
       return state
   }

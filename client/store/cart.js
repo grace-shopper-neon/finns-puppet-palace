@@ -34,10 +34,10 @@ export const postOrderList = productId => {
   }
 }
 
-export const postCart = () => {
+export const checkoutCart = orderId => {
   return async dispatch => {
     try {
-      await Axios.post(`/api/carts/`)
+      await Axios.put(`/api/orderLists/`, {orderId})
       const {data} = await Axios.get(`/api/orderLists/`)
       dispatch(setCartOrders(data))
     } catch (err) {
