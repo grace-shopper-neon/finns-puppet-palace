@@ -17,7 +17,7 @@ export class Cart extends React.Component {
   }
 
   async handleClick() {
-    await this.props.saveOrder()
+    await this.props.createOrder()
     await this.props.processCart(this.props.order.id)
   }
 
@@ -91,7 +91,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   getOrders: () => dispatch(fetchCartOrders()),
-  saveOrder: () => dispatch(postOrder()),
+  createOrder: () => dispatch(postOrder()),
   processCart: id => dispatch(checkoutCart(id))
 })
 
