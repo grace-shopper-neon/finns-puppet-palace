@@ -6,10 +6,10 @@ export const setCartOrders = orderLists => ({
   orderLists
 })
 
-export const fetchCartOrders = cartId => {
+export const fetchCartOrders = () => {
   return async dispatch => {
     try {
-      const {data} = await Axios.get(`/api/orderLists/${cartId}`)
+      const {data} = await Axios.get(`/api/orderLists/`)
       dispatch(setCartOrders(data))
     } catch (err) {
       console.error(err)
