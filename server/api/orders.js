@@ -5,17 +5,13 @@ const Order = require('../db/models/order')
 
 router.post('/', async (req, res, next) => {
   try {
+    let order
     if (req.user) {
-      await Order.bulkCreate(req.body.orderLists)
-      await Order.update({userId: req.user.id}, {where: {cartId: req.cart.id}})
+      order = await Order.create({userId: req.user.id})
+    } else {
+      order = await Order.create({userId: null})
     }
-
-    const orders = await Order.findAll({
-      where: {cartId: req.cart.id, userId: req.user.id},
-      include: [OrderList, Product]
-    })
-
-    res.send(orders)
+    res.send(order)
   } catch (err) {
     next(err)
   }
