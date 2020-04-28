@@ -1,5 +1,6 @@
 import React from 'react'
-
+import {connect} from 'react-redux'
+import {postProduct} from '../../store/products'
 class ProductForm extends React.Component {
   constructor() {
     super()
@@ -22,11 +23,13 @@ class ProductForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
+    this.props.addProduct(this.state)
   }
 
   render() {
     const {name, color, animal, price, description} = this.state
     return (
+      // todo: add img upload
       <div className="w-50 mt-5 mx-auto">
         <h3>Add Product</h3>
         <form onSubmit={this.handleSubmit}>
@@ -108,4 +111,8 @@ class ProductForm extends React.Component {
   }
 }
 
-export default ProductForm
+const mapDispatch = dispatch => ({
+  addProduct: product => dispatch(postProduct(product))
+})
+
+export default connect(null, mapDispatch)(ProductForm)

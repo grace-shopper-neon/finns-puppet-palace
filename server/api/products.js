@@ -29,4 +29,15 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    // todo: make route admins only
+    // todo: validate data
+    const product = await Product.create(req.body)
+    res.json(product)
+  } catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router

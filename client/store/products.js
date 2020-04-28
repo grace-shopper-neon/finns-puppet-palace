@@ -1,11 +1,18 @@
 import Axios from 'axios'
-const SET_PRODUCTS = 'SET_PRODUCTS'
 
+// ACTION TYPES
+const SET_PRODUCTS = 'SET_PRODUCTS'
+const ADD_PRODUCT = 'ADD_PRODUCT'
+
+// ACTION CREATORS
 export const setProducts = products => ({
   type: SET_PRODUCTS,
   products
 })
 
+const addProduct = product => ({type: ADD_PRODUCT, product})
+
+// THUNKS
 export const fetchProducts = (query = '') => {
   return async dispatch => {
     try {
@@ -17,12 +24,27 @@ export const fetchProducts = (query = '') => {
   }
 }
 
+export const postProduct = product => {
+  return async dispatch => {
+    try {
+      const {data} = await Axios.post('/api/products', product)
+      dispatch(addProduct(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+// REDUCER
 const initialState = []
 
 export default function productsReducer(state = initialState, action) {
   switch (action.type) {
     case SET_PRODUCTS:
       return action.products
+    case ADD_PRODUCT: {
+      return [...state, action.product]
+    }
     default:
       return state
   }
