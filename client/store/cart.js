@@ -26,7 +26,8 @@ export const fetchCartOrders = () => {
 export const postOrderList = productId => {
   return async dispatch => {
     try {
-      const {data} = await Axios.post(`/api/orderLists/`, productId)
+      console.log('id in Thunk', productId)
+      const {data} = await Axios.post(`/api/orderLists/`, {productId})
       dispatch(addOrderList(data))
     } catch (err) {
       console.error(err)

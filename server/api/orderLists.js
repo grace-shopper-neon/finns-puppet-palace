@@ -16,15 +16,30 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    let [orderList, created] = await OrderList.findOrCreate({
-      where: {cartId: req.cart.id, productId: req.body.productId},
-      defaults: {quantity: 1}
-    })
+    console.log('id in API Route', req.body.productId)
 
-    if (!created) {
-      const quantity = orderList.quantity++
-      orderList = await OrderList.update({quantity: quantity})
-    }
+    // let orderList = await OrderList.findAll({where: {cartId: req.cart.id, productId: req.body.productId}, include: Product})[0]
+
+    // if (orderList) {
+    //   let orderList = await OrderList.update({where: {cartId: req.cart.id, productId: req.body.productId}, include: Product})
+    // } else (!orderList) {
+    //   let orderList = await OrderList.create()
+    // }
+
+    // let [orderList, created] = await OrderList.findOrCreate({
+    //   where: {cartId: req.cart.id, productId: req.body.productId},
+    //   include: Product,
+    //   defaults: {quantity: 1}
+    // })
+    // console.log('New OrderList', orderList)
+
+    // if (!created) {
+    //   const quantity = orderList.quantity++
+    //   orderList = await OrderList.update({quantity: quantity})
+    // }
+
+    const orderList = {id: 100, quantity: 1, cartId: 20, productId: 1}
+
     res.send(orderList)
   } catch (err) {
     next(err)

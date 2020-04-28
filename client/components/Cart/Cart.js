@@ -34,6 +34,7 @@ export class Cart extends React.Component {
           {/* Use a reduce function to iterate over all orders and get their total price */}
 
           <b>
+            {console.log('props in Cart.js', this.props)}
             Subtotal:{' '}
             {priceConv(
               this.props.cartOrderLists
