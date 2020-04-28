@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome} from './components'
+import {Login, Signup, UserHome, UserList} from './components'
 import AllProducts from './components/Products/AllProducts'
 import SingleProduct from './components/Products/SingleProduct'
 import SingleUser from './components/SingleUser'
@@ -24,13 +24,16 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/products/:productId" component={SingleProduct} />
-        {/* <Route path="/users/:userId" component={SingleProduct} /> */}
+        <Route path="/users/:userId" component={SingleUser} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
+        <Route path="/?page=pageNumber" component={AllProducts} />
         {isLoggedIn && (
           <Switch>
-            <Route path="/home" component={UserHome} />
+            <Route exact path="/home" component={UserHome} />
+            <Route exact path="/admin" component={UserList} />
+            <Route path="/" component={AllProducts} />
           </Switch>
         )}
         {/* Displays our All Products as a default home page*/}

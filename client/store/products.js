@@ -6,10 +6,10 @@ export const setProducts = products => ({
   products
 })
 
-export const fetchProducts = () => {
+export const fetchProducts = query => {
   return async dispatch => {
     try {
-      const {data} = await Axios.get('/api/products')
+      const {data} = await Axios.get(`/api/products/${query}`)
       dispatch(setProducts(data))
     } catch (err) {
       console.error(err)

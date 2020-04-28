@@ -35,29 +35,21 @@ const Navbar = ({handleClick, isLoggedIn}) => {
         </h3>
       </div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        {isLoggedIn ? (
-          <div>
-            {/* The navbar will show these links after you log in */}
-            <Link to="/home">Home</Link>
-            <a href="#" onClick={handleClick}>
-              Logout
-            </a>
-          </div>
-        ) : (
-          <div>
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
+        <div className="">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item active">
+              <a className="nav-link" href="#">
+                <Link to="/">Home</Link>
+              </a>
+            </li>
+            <li className="nav-item">
+              <Link to="/cart">
                 <a className="nav-link" href="#">
-                  <Link to="/">Home</Link>
+                  Cart
                 </a>
-              </li>
-              <li className="nav-item">
-                <Link to="/cart">
-                  <a className="nav-link" href="#">
-                    Cart
-                  </a>
-                </Link>
-              </li>
+              </Link>
+            </li>
+            {!isLoggedIn && (
               <li className="nav-item">
                 <Link to="/signup">
                   <a className="nav-link" href="#">
@@ -65,6 +57,8 @@ const Navbar = ({handleClick, isLoggedIn}) => {
                   </a>
                 </Link>
               </li>
+            )}
+            {!isLoggedIn && (
               <li className="nav-item">
                 <Link to="/login">
                   <a className="nav-link" href="#">
@@ -72,9 +66,24 @@ const Navbar = ({handleClick, isLoggedIn}) => {
                   </a>
                 </Link>
               </li>
-            </ul>
-          </div>
-        )}
+            )}
+            {isLoggedIn && (
+              <li className="nav-item">
+                {/* The navbar will show these links after you log in */}
+                <Link to="/home">
+                  <a href="#" className="nav-link">
+                    Settings
+                  </a>
+                </Link>
+                <Link to="/">
+                  <a href="#" className="nav-link" onClick={handleClick}>
+                    Logout
+                  </a>
+                </Link>
+              </li>
+            )}
+          </ul>
+        </div>
       </nav>
       <hr />
     </div>

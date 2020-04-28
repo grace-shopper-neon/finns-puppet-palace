@@ -15,14 +15,13 @@ export const fetchSingleUser = id => {
     try {
       const {data} = await axios.get(`/api/users/${id}`)
       dispatch(getSingleUser(data))
-      console.log('this is', data)
     } catch (err) {
       console.log(err)
     }
   }
 }
 
-export default function userReducer(state = [], action) {
+export default function singleUserReducer(state = {}, action) {
   switch (action.type) {
     case GET_SINGLE_USER:
       return action.singleUser
