@@ -7,9 +7,9 @@ export const setCartOrders = orderLists => ({
   orderLists
 })
 
-export const addOrderList = orderLists => ({
+export const addOrderList = orderList => ({
   type: ADD_ORDER_LIST,
-  orderLists
+  orderList
 })
 
 export const fetchCartOrders = () => {
@@ -53,7 +53,7 @@ export default function cartOrderReducer(state = initialState, action) {
     case SET_CART_ORDER_LISTS:
       return action.orderLists
     case ADD_ORDER_LIST: {
-      return action.orderLists
+      return [...state, action.orderList]
     }
     default:
       return state
