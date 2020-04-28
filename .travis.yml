@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - node # uses most recent stable node version
+  - 12 # uses version 12
 services:
   - postgresql # starts up postgres
 addons:
@@ -17,7 +17,6 @@ before_script:
 script:
   - npm test # test the code
   - npm run build-client # make the bundle
-
 # before_deploy:
 #   - rm -rf node_modules # omit from the tarball, since we skip cleanup
 # deploy:
