@@ -7,9 +7,7 @@ import {Link} from 'react-router-dom'
 
 export class Cart extends React.Component {
   async componentDidMount() {
-    //REFACTOR: use CartId on session
-    const cartId = 2
-    await this.props.getOrders(cartId)
+    await this.props.getOrders()
   }
 
   render() {
@@ -36,6 +34,7 @@ export class Cart extends React.Component {
           {/* Use a reduce function to iterate over all orders and get their total price */}
 
           <b>
+            {console.log('props in Cart.js', this.props)}
             Subtotal:{' '}
             {priceConv(
               this.props.cartOrderLists
@@ -75,7 +74,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  getOrders: id => dispatch(fetchCartOrders(id))
+  getOrders: () => dispatch(fetchCartOrders())
 })
 
 export default connect(mapState, mapDispatch)(Cart)

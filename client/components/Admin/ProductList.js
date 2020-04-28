@@ -4,10 +4,13 @@ import {Link} from 'react-router-dom'
 import priceConv from '../../utility/priceConversion'
 import {fetchProducts} from '../../store/products'
 
+import ProductForm from './ProductForm'
+
 class ProductList extends React.Component {
   componentDidMount() {
     this.props.getProducts()
   }
+
   render() {
     const {user, products} = this.props
     const authorized = user.isAdmin
@@ -16,6 +19,7 @@ class ProductList extends React.Component {
         {authorized ? (
           <div>
             <Link to="/admin">Admin Home</Link>
+            <ProductForm />
             <table className="table mt-5">
               <thead>
                 <tr>
