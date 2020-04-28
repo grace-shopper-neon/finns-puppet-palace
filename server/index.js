@@ -63,6 +63,23 @@ const createApp = () => {
   app.use(passport.initialize())
   app.use(passport.session())
 
+  app.use('/', async (req, res, next) => {
+    try {
+      if (req.session.cartId) {
+        const cart = await db.models.cart.findByPk(req.session.cartId)
+        req.cart = cart
+        next()
+      } else {
+        const cart = await db.models.cart.create({status: 'inProgress'})
+        req.session.cartId = cart.id
+        req.cart = cart
+        next()
+      }
+    } catch (err) {
+      next(err)
+    }
+  })
+
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))

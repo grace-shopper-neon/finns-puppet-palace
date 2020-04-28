@@ -1,12 +1,22 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchOneProduct} from '../../store/singleProduct'
+import {postOrderList} from '../../store/cart'
 import AllReviews from '../AllReviews'
 import priceConv from '../../utility/priceConversion'
 
 class SingleProduct extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+  }
+
   componentDidMount() {
     this.props.getSingleProduct(Number(this.props.match.params.productId))
+  }
+
+  handleClick() {
+    this.props.addToCart(this.props.singleProduct.id)
   }
 
   render() {
@@ -18,13 +28,25 @@ class SingleProduct extends React.Component {
 
     return (
       <div className="singleProduct">
-        <h1 className="productName">{name}</h1>
-        <img src={imageUrl} className="productImage" />
-        <h2> {priceConv(price)} </h2>
-        <div className="productDescription">{description}</div>
-        <button type="button" className="btn">
-          Add To Cart
-        </button>
+        <div className="container">
+          <div className="singleProductContainer">
+            <div>
+              <img src={imageUrl} className="productImage" />
+            </div>
+            <div>
+              <h1 className="productName">{name}</h1>
+              <h2> {priceConv(price)} </h2>
+              <div className="productDescription">{description}</div>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={this.handleClick}
+              >
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
         <AllReviews />
       </div>
     )
@@ -40,7 +62,8 @@ const mapState = (state, ownProps) => {
 
 const mapDispatch = dispatch => {
   return {
-    getSingleProduct: id => dispatch(fetchOneProduct(id))
+    getSingleProduct: id => dispatch(fetchOneProduct(id)),
+    addToCart: id => dispatch(postOrderList(id))
   }
 }
 export default connect(mapState, mapDispatch)(SingleProduct)
