@@ -28,13 +28,25 @@ class SingleProduct extends React.Component {
 
     return (
       <div className="singleProduct">
-        <h1 className="productName">{name}</h1>
-        <img src={imageUrl} className="productImage" />
-        <h2> {priceConv(price)} </h2>
-        <div className="productDescription">{description}</div>
-        <button type="button" className="btn" onClick={this.handleClick}>
-          Add To Cart
-        </button>
+        <div className="container">
+          <div className="singleProductContainer">
+            <div>
+              <img src={imageUrl} className="productImage" />
+            </div>
+            <div>
+              <h1 className="productName">{name}</h1>
+              <h2> {priceConv(price)} </h2>
+              <div className="productDescription">{description}</div>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={this.handleClick}
+              >
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
         <AllReviews />
       </div>
     )
