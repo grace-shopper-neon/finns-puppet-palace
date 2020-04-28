@@ -22,6 +22,10 @@ const Navbar = ({handleClick, isLoggedIn}) => {
     textAlign: 'center'
   }
 
+  let nav = {
+    textAlign: 'center'
+  }
+
   return (
     <div>
       <div>
@@ -40,7 +44,7 @@ const Navbar = ({handleClick, isLoggedIn}) => {
             </a>
           </div>
         ) : (
-          <div className="">
+          <div>
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
                 <a className="nav-link" href="#">
