@@ -44,6 +44,7 @@ export default function cartOrderReducer(state = initialState, action) {
     case ADD_ORDER_LIST: {
       let newState = state.map(orderList => {
         if (orderList.id === action.orderList.id) {
+          update = true
           return action.orderList
         }
       })
