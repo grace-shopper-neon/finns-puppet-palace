@@ -34,6 +34,18 @@ export const postOrderList = productId => {
   }
 }
 
+export const checkoutCart = orderId => {
+  return async dispatch => {
+    try {
+      await Axios.put(`/api/orderLists/`, {orderId})
+      const {data} = await Axios.get(`/api/orderLists/`)
+      dispatch(setCartOrders(data))
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
 const initialState = []
 
 export default function cartOrderReducer(state = initialState, action) {
