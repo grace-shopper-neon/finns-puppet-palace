@@ -2,13 +2,45 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import priceConv from '../../utility/priceConversion'
+import queryString from 'query-string'
 import {fetchProducts} from '../../store/products'
 
 import ProductForm from './ProductForm'
 
 class ProductList extends React.Component {
+  constructor() {
+    super()
+    this.handlePrevious = this.handlePrevious.bind(this)
+    this.handleNext = this.handleNext.bind(this)
+  }
   componentDidMount() {
-    this.props.getProducts()
+    const query = this.props.location.search
+    this.props.getProducts(query)
+  }
+
+  handlePrevious() {
+    const queries = queryString.parse(this.props.location.search)
+    const pageNum = Number(queries.page)
+    if (pageNum > 1) {
+      this.props.history.push(
+        `${this.props.location.pathname}?page=${pageNum - 1}`
+      )
+      this.props.getProducts(`?page=${pageNum - 1}`)
+    }
+  }
+
+  handleNext() {
+    const queries = queryString.parse(this.props.location.search)
+    const pageNum = Number(queries.page)
+    if (pageNum) {
+      this.props.history.push(
+        `${this.props.location.pathname}?page=${pageNum + 1}`
+      )
+      this.props.getProducts(`?page=${pageNum + 1}`)
+    } else {
+      this.props.history.push(`${this.props.location.pathname}?page=${2}`)
+      this.props.getProducts(`?page=2`)
+    }
   }
 
   render() {
@@ -38,6 +70,26 @@ class ProductList extends React.Component {
                   : null}
               </tbody>
             </table>
+            <div className="row justify-content-between mb-3">
+              <div>
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  onClick={this.handlePrevious}
+                >
+                  Prev
+                </button>
+              </div>
+              <div>
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  onClick={this.handleNext}
+                >
+                  Next
+                </button>
+              </div>
+            </div>
           </div>
         ) : (
           <div>You do not have access to this page</div>
@@ -67,7 +119,7 @@ const mapState = ({user, products}) => ({
 })
 
 const mapDispatch = dispatch => ({
-  getProducts: () => dispatch(fetchProducts())
+  getProducts: query => dispatch(fetchProducts(query))
 })
 
 export default connect(mapState, mapDispatch)(ProductList)
