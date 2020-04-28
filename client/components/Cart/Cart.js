@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchCartOrders} from '../../store/cart'
+import {fetchCartOrders, postCart} from '../../store/cart'
 import SingleOrderList from './SingleOrderList'
 import priceConv from '../../utility/priceConversion'
 import {Link} from 'react-router-dom'
@@ -74,7 +74,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  getOrders: () => dispatch(fetchCartOrders())
+  getOrders: () => dispatch(fetchCartOrders()),
+  createNewCart: () => dispatch(postCart())
 })
 
 export default connect(mapState, mapDispatch)(Cart)
