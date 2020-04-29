@@ -3,6 +3,21 @@ const Product = require('../db/models/product')
 
 const PER_PAGE = 8
 
+// isAdmin gatekeeper
+const isAdmin = (req, res, next) => {
+  const currUser = req.user // this is the currently authenticated user
+  if (currUser) {
+    if (currUser.isAdmin) {
+      next()
+    } else {
+      next(new Error('Not Authorized'))
+    }
+  } else {
+    res.status(403)
+    next(new Error('Not Authenticated'))
+  }
+}
+
 router.get('/', async (req, res, next) => {
   try {
     const page = req.query.page || 1
@@ -29,9 +44,8 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
   try {
-    // todo: make route admins only
     // todo: validate data
     const product = await Product.create(req.body)
     res.json(product)
