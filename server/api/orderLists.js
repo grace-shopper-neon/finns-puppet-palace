@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const OrderList = require('../db/models/orderList')
 const Product = require('../db/models/product')
-
+const Cart = require('../db/models/cart')
 router.get('/', async (req, res, next) => {
   try {
     const orderLists = await OrderList.findAll({
@@ -16,24 +16,41 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    // created indicates whether or not this is a new orderList or a pre-existing one
+    // if the order doesn't exist create it
     let [orderList, created] = await OrderList.findOrCreate({
       where: {cartId: req.cart.id, productId: req.body.productId}
     })
 
+    // otherwise the order already existed - update it
     if (!created) {
       const quantity = orderList.quantity + 1
-      orderList = await OrderList.update(
-        {quantity: quantity},
-        {where: {cartId: req.cart.id, productId: req.body.productId}}
+      await orderList.update({quantity})
+    }
+
+    // eager load the product
+    const orderListWithProduct = await orderList.reload({include: Product})
+
+    res.send(orderListWithProduct)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put('/', async (req, res, next) => {
+  try {
+    if (req.user) {
+      await OrderList.update(
+        {orderId: req.body.orderId},
+        {where: {cartId: req.cart.id}}
       )
     }
 
-    const orderLists = await OrderList.findAll({
-      where: {cartId: req.cart.id},
-      include: Product
-    })
+    const newCart = await Cart.create()
+    req.session.cartId = newCart.id
+    req.cart = newCart
 
-    res.send(orderLists)
+    res.sendStatus('200')
   } catch (err) {
     next(err)
   }

@@ -7,9 +7,9 @@ export const setCartOrders = orderLists => ({
   orderLists
 })
 
-export const addOrderList = orderLists => ({
+export const addOrderList = orderList => ({
   type: ADD_ORDER_LIST,
-  orderLists
+  orderList
 })
 
 export const fetchCartOrders = () => {
@@ -34,6 +34,18 @@ export const postOrderList = productId => {
   }
 }
 
+export const checkoutCart = orderId => {
+  return async dispatch => {
+    try {
+      await Axios.put(`/api/orderLists/`, {orderId})
+      const {data} = await Axios.get(`/api/orderLists/`)
+      dispatch(setCartOrders(data))
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
 const initialState = []
 
 export default function cartOrderReducer(state = initialState, action) {
@@ -41,7 +53,7 @@ export default function cartOrderReducer(state = initialState, action) {
     case SET_CART_ORDER_LISTS:
       return action.orderLists
     case ADD_ORDER_LIST: {
-      return action.orderLists
+      return [...state, action.orderList]
     }
     default:
       return state

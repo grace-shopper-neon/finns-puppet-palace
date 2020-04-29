@@ -1,13 +1,24 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchCartOrders} from '../../store/cart'
+import {fetchCartOrders, checkoutCart} from '../../store/cart'
+import {postOrder} from '../../store/orderHistory'
 import SingleOrderList from './SingleOrderList'
 import priceConv from '../../utility/priceConversion'
 import {Link} from 'react-router-dom'
 
 export class Cart extends React.Component {
+  constructor() {
+    super()
+    this.handleClick = this.handleClick.bind(this)
+  }
+
   async componentDidMount() {
     await this.props.getOrders()
+  }
+
+  async handleClick() {
+    await this.props.createOrder()
+    await this.props.processCart(this.props.order.id)
   }
 
   render() {
@@ -34,11 +45,10 @@ export class Cart extends React.Component {
           {/* Use a reduce function to iterate over all orders and get their total price */}
 
           <b>
-            {console.log('props in Cart.js', this.props)}
             Subtotal:{' '}
             {priceConv(
               this.props.cartOrderLists
-                .map(order => order.quantity * order.product.price)
+                .map(orderList => orderList.quantity * orderList.product.price)
                 .reduce(
                   (accumulator, currentValue) => accumulator + currentValue,
                   0
@@ -49,7 +59,11 @@ export class Cart extends React.Component {
         <div>
           <div>
             {/* Link to AllProducts page */}
-            <button type="button" className="btn btn-primary btn-lg btn-block">
+            <button
+              type="button"
+              className="btn btn-primary btn-lg btn-block"
+              onClick={this.handleClick}
+            >
               Checkout
             </button>
           </div>
@@ -70,11 +84,14 @@ export class Cart extends React.Component {
 }
 
 const mapState = state => ({
-  cartOrderLists: state.cart
+  cartOrderLists: state.cart,
+  order: state.order
 })
 
 const mapDispatch = dispatch => ({
-  getOrders: () => dispatch(fetchCartOrders())
+  getOrders: () => dispatch(fetchCartOrders()),
+  createOrder: () => dispatch(postOrder()),
+  processCart: id => dispatch(checkoutCart(id))
 })
 
 export default connect(mapState, mapDispatch)(Cart)
