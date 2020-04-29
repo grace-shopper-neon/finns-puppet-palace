@@ -26,7 +26,6 @@ export const fetchCartOrders = () => {
 export const postOrderList = productId => {
   return async dispatch => {
     try {
-      console.log('id in Thunk', productId)
       const {data} = await Axios.post(`/api/orderLists/`, {productId})
       dispatch(addOrderList(data))
     } catch (err) {
@@ -35,25 +34,36 @@ export const postOrderList = productId => {
   }
 }
 
+export const putOrderListQuantity = (id, quantity) => async dispatch => {
+  try {
+    await Axios.put(`/api/orderLists/${id}`, {quantity})
+    const {data} = await Axios.get(`/api/orderLists/`)
+    dispatch(setCartOrders(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const checkoutCart = orderId => {
+  return async dispatch => {
+    try {
+      await Axios.put(`/api/orderLists/`, {orderId})
+      const {data} = await Axios.get(`/api/orderLists/`)
+      dispatch(setCartOrders(data))
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
 const initialState = []
-let update = false
 
 export default function cartOrderReducer(state = initialState, action) {
   switch (action.type) {
     case SET_CART_ORDER_LISTS:
       return action.orderLists
     case ADD_ORDER_LIST: {
-      let newState = state.map(orderList => {
-        if (orderList.id === action.orderList.id) {
-          update = true
-          return action.orderList
-        }
-      })
-      if (update) {
-        return newState
-      } else {
-        return [...state, action.orderList]
-      }
+      return [...state, action.orderList]
     }
     default:
       return state

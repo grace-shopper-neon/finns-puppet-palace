@@ -3,7 +3,8 @@ const Sequelize = require('sequelize')
 
 const OrderList = db.define('order-list', {
   quantity: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    defaultValue: 1
   }
 })
 

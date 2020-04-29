@@ -1,4 +1,5 @@
 import Axios from 'axios'
+// import queryString from 'query-string'
 
 // ACTION TYPES
 const SET_PRODUCTS = 'SET_PRODUCTS'
@@ -13,10 +14,12 @@ export const setProducts = products => ({
 const addProduct = product => ({type: ADD_PRODUCT, product})
 
 // THUNKS
-export const fetchProducts = (query = '') => {
+export const fetchProducts = () => {
   return async dispatch => {
     try {
-      const {data} = await Axios.get(`/api/products/${query}`)
+      // const {data} = await Axios.get(`/api/products/${query}`)
+      console.log('inside thunk')
+      const {data} = await Axios.get(`/api/products/`)
       dispatch(setProducts(data))
     } catch (err) {
       console.error(err)

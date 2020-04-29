@@ -6,15 +6,33 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import queryString from 'query-string'
+import Paginate from '../Paginate'
 
 export class AllProducts extends React.Component {
+  // TODO: Complete Pagination
+  // constructor() {
+  //   super()
+  //   this.state = {
+  //     currentPage: 1
+  //   }
+  //   this.paginate = this.paginate.bind(this)
+  // }
+
   componentDidMount() {
-    const query = this.props.location.search
-    this.props.getProducts(query)
+    // const query = this.props.location.search
+    this.props.getProducts()
   }
 
+  // TODO: Complete Pagination
+
+  // paginate(pageNumber) {
+  //   this.setState({
+  //     currentPage: pageNumber
+  //   })
+  //   console.log('inside paginate', this.state)
+  // }
+
   render() {
-    const page = queryString.parse(this.props.location.search).page || 1
     return (
       <div>
         <Container fluid="md">
@@ -25,38 +43,27 @@ export class AllProducts extends React.Component {
               </Col>
             ))}
           </Row>
-          <nav aria-label="Page navigation example">
-            <ul className="pagination">
-              <li
-                className={
-                  Number(page) === 1 ? 'page-item disabled' : 'page-item'
-                }
-              >
-                <a className="page-link" href="#">
-                  Previous
-                </a>
-              </li>
 
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  Next
-                </a>
-              </li>
-            </ul>
-          </nav>
+          {/* IP Pagination  */}
+          {/* <nav aria-label="Page navigation example">
+            <Paginate
+              currPage={this.state.currentPage}
+              paginate={this.paginate}
+            />
+          </nav> */}
         </Container>
       </div>
     )
   }
 }
 
-const mapState = state => ({
+const mapState = (state, ownProps) => ({
   products: state.products
 })
 
 const mapDispatch = dispatch => {
   return {
-    getProducts: query => dispatch(fetchProducts(query))
+    getProducts: () => dispatch(fetchProducts())
   }
 }
 

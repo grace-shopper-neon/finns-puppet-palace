@@ -49,3 +49,11 @@ form div {
 .subtotal {
   text-align: end;
 }
+
+.singleProductContainer {
+  display: flex;
+}
+
+.deleteButton {
+  align-self: center;
+}
