@@ -21,8 +21,8 @@ class SingleUser extends React.Component {
     const {email, fullName} = userToView
     return authorized ? (
       <div className="singleUser">
-        <h1 className="fullName">User: {fullName}</h1>
-        <h2 className="email">User Email: {email}</h2>
+        <h1 className="fullName">Name: {fullName}</h1>
+        <h2 className="email">Email: {email}</h2>
         {currUser.isAdmin ? <Link to="/admin">Admin Page</Link> : null}
       </div>
     ) : (
