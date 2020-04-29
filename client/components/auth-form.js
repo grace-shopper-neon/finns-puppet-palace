@@ -25,9 +25,9 @@ const AuthForm = props => {
         {displayName === 'Sign Up' ? (
           <div>
             <label htmlFor="firstName">
-              <small>First Name</small>
+              <small>Last Name</small>
             </label>
-            <input name="firstName" type="text" />
+            <input name="lastName" type="text" />
           </div>
         ) : (
           ''
@@ -87,8 +87,12 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      const fullName =
-        evt.target.firstName.value + ' ' + evt.target.lastName.value
+
+      let fullName
+
+      if (evt.target.firstName || evt.target.lastName) {
+        fullName = evt.target.firstName.value + ' ' + evt.target.lastName.value
+      }
 
       dispatch(auth(email, password, formName, fullName))
     }
