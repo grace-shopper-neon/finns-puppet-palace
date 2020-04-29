@@ -1,18 +1,17 @@
 const router = require('express').Router()
 const Product = require('../db/models/product')
 
-const PER_PAGE = 8
+// const PER_PAGE = 8
 
 router.get('/', async (req, res, next) => {
   try {
-    const page = req.query.page || 1
+    // const page = req.query.page || 1
 
-    const findOptions = {
-      limit: PER_PAGE,
-      offset: (page - 1) * PER_PAGE
-    }
-
-    const products = await Product.findAll(findOptions)
+    // const findOptions = {
+    //   limit: PER_PAGE,
+    //   offset: (page - 1) * PER_PAGE
+    // }
+    const products = await Product.findAll()
 
     res.send(products)
   } catch (err) {
