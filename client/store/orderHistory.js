@@ -1,15 +1,9 @@
 import Axios from 'axios'
 const CREATE_ORDER_HISTORY = 'CREATE_ORDER_HISTORY'
-const SET_ORDER_HISTORY = 'SET_ORDER_HISTORY'
 
 export const createOrderHistory = order => ({
   type: CREATE_ORDER_HISTORY,
   order
-})
-
-export const setOrderHistory = orders => ({
-  type: SET_ORDER_HISTORY,
-  orders
 })
 
 export const postOrder = () => {
@@ -17,17 +11,6 @@ export const postOrder = () => {
     try {
       const {data} = await Axios.post(`/api/orders/`)
       dispatch(createOrderHistory(data))
-    } catch (err) {
-      console.error(err)
-    }
-  }
-}
-
-export const fetchOrders = userId => {
-  return async dispatch => {
-    try {
-      const {data} = await Axios.get(`/api/orders/${userId}`)
-      dispatch(setOrderHistory(data))
     } catch (err) {
       console.error(err)
     }
