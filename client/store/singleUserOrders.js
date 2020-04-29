@@ -19,7 +19,7 @@ export const fetchOrders = userId => {
 
 const initialState = []
 
-export default function orderHistoryReducer(state = initialState, action) {
+export default function singleUserOrdersReducer(state = initialState, action) {
   switch (action.type) {
     case SET_ORDER_HISTORY:
       if (action.orders) {
