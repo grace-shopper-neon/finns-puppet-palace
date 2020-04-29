@@ -2,6 +2,7 @@ const router = require('express').Router()
 const OrderList = require('../db/models/orderList')
 const Product = require('../db/models/product')
 const Cart = require('../db/models/cart')
+
 router.get('/', async (req, res, next) => {
   try {
     const orderLists = await OrderList.findAll({
@@ -30,6 +31,7 @@ router.post('/', async (req, res, next) => {
   try {
     // created indicates whether or not this is a new orderList or a pre-existing one
     // if the order doesn't exist create it
+
     let [orderList, created] = await OrderList.findOrCreate({
       where: {cartId: req.cart.id, productId: req.body.productId}
     })
@@ -76,7 +78,6 @@ router.put('/:id', async (req, res, next) => {
     )
 
     if (req.body.quantity === 1) {
-      console.log('inside')
       await OrderList.destroy({where: {id: req.params.id}})
       res.sendStatus('200')
     } else {

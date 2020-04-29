@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import SingleUser from './SingleUser'
+import OrderHistory from './SingleUserOrders'
 
 /**
  * COMPONENT
@@ -12,6 +13,7 @@ export const UserHome = props => {
     <div className="container">
       <h3>Welcome, {user.fullName}</h3>
       <SingleUser overrides={user} />
+      <OrderHistory userId={user.id} />
     </div>
   )
 }
