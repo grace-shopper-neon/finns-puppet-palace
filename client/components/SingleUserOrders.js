@@ -10,11 +10,20 @@ class OrderHistory extends React.Component {
   render() {
     return (
       <div>
-        <ul>
-          {this.props.orders.map(order => (
-            <li key={order.id}>{order.createdAt}</li>
-          ))}
-        </ul>
+        <h1>Order History</h1>
+        {this.props.orders.length ? (
+          <ul>
+            {this.props.orders.map(order => {
+              const date = new Date(order.createdAt)
+              return (
+                <li key={order.id}>{`${date.getMonth() +
+                  1}/${date.getDay()}/${date.getFullYear()}`}</li>
+              )
+            })}
+          </ul>
+        ) : (
+          <p>No Order History</p>
+        )}
       </div>
     )
   }
