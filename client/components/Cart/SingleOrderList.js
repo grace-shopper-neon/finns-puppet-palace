@@ -2,23 +2,22 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import priceConv from '../../utility/priceConversion'
 import {connect} from 'react-redux'
-import {putOrderListQuantity} from '../../store/singleOrderList'
+import {putOrderListQuantity} from '../../store/cart'
 
 export class SingleOrderList extends React.Component {
   constructor(props) {
-    super()
+    super(props)
     this.handleClick = this.handleClick.bind(this)
   }
+
   handleClick() {
+    console.log('handleClick', this.props.order)
     this.props.deleteOrder(this.props.order.id, this.props.order.quantity)
   }
 
   render() {
     const order = this.props.order
-    const product = this.props.order.product
-    console.log('single order list', this.props.singleOrderList)
-    // const imageUrl =
-    //   'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Creative-Tail-Animal-dog.svg/256px-Creative-Tail-Animal-dog.svg.png'
+    const product = this.props.order.product || {}
 
     return (
       <div id="cartOrderList" className="list-group-item">
@@ -60,13 +59,8 @@ export class SingleOrderList extends React.Component {
   }
 }
 
-const mapState = state => ({
-  singleOrderLists: state.SingleOrderList,
-  singleOrderList: state.singleOrderList
-})
-
 const mapDispatch = dispatch => ({
   deleteOrder: (id, quantity) => dispatch(putOrderListQuantity(id, quantity))
 })
 
-export default connect(mapState, mapDispatch)(SingleOrderList)
+export default connect(null, mapDispatch)(SingleOrderList)
