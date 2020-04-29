@@ -2,7 +2,14 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, UserList} from './components'
+import {
+  Login,
+  Signup,
+  UserHome,
+  AdminPage,
+  UserList,
+  ProductList
+} from './components'
 import AllProducts from './components/Products/AllProducts'
 import SingleProduct from './components/Products/SingleProduct'
 import SingleUser from './components/SingleUser'
@@ -31,8 +38,10 @@ class Routes extends Component {
         <Route path="/?page=pageNumber" component={AllProducts} />
         {isLoggedIn && (
           <Switch>
+            <Route path="/admin/users" component={UserList} />
+            <Route path="/admin/products" component={ProductList} />
+            <Route exact path="/admin" component={AdminPage} />
             <Route exact path="/home" component={UserHome} />
-            <Route exact path="/admin" component={UserList} />
             <Route path="/" component={AllProducts} />
           </Switch>
         )}
