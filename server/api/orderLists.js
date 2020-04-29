@@ -14,6 +14,18 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:id', async (req, res, next) => {
+  try {
+    console.log('req.params', req.params.id)
+    const orderList = await OrderList.findByPk(req.params.id, {
+      include: Product
+    })
+    res.send(orderList)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
     // created indicates whether or not this is a new orderList or a pre-existing one
@@ -51,6 +63,25 @@ router.put('/', async (req, res, next) => {
     req.cart = newCart
 
     res.sendStatus('200')
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put('/:id', async (req, res, next) => {
+  try {
+    await OrderList.update(
+      {quantity: req.body.quantity - 1},
+      {where: {id: req.params.id}}
+    )
+
+    if (req.body.quantity === 1) {
+      console.log('inside')
+      await OrderList.destroy({where: {id: req.params.id}})
+      res.sendStatus('200')
+    } else {
+      res.sendStatus('200')
+    }
   } catch (err) {
     next(err)
   }
