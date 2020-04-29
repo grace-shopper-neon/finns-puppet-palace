@@ -52,43 +52,45 @@ class ProductList extends React.Component {
           <div>
             <Link to="/admin">Admin Home</Link>
             <ProductForm />
-            <table className="table mt-5">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Animal</th>
-                  <th scope="col">Color</th>
-                  <th scope="col">Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                {products
-                  ? products.map((p, i) => (
-                      <SingleProduct num={i + 1} key={p.id} product={p} />
-                    ))
-                  : null}
-              </tbody>
-            </table>
-            <div className="row justify-content-between mb-3">
-              <div>
-                <button
-                  className="btn btn-secondary"
-                  type="button"
-                  onClick={this.handlePrevious}
-                >
-                  Prev
-                </button>
+            <div className="mt-5">
+              <div className="row justify-content-between mb-3">
+                <div>
+                  <button
+                    className="btn btn-secondary"
+                    type="button"
+                    onClick={this.handlePrevious}
+                  >
+                    Prev
+                  </button>
+                </div>
+                <div>
+                  <button
+                    className="btn btn-secondary"
+                    type="button"
+                    onClick={this.handleNext}
+                  >
+                    Next
+                  </button>
+                </div>
               </div>
-              <div>
-                <button
-                  className="btn btn-secondary"
-                  type="button"
-                  onClick={this.handleNext}
-                >
-                  Next
-                </button>
-              </div>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Animal</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products
+                    ? products.map((p, i) => (
+                        <SingleProduct num={i + 1} key={p.id} product={p} />
+                      ))
+                    : null}
+                </tbody>
+              </table>
             </div>
           </div>
         ) : (
