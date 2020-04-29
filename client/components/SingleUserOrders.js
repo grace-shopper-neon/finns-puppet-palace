@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchOrders} from '../store/singleUserOrders'
+import priceConv from '../utility/priceConversion'
 
 class OrderHistory extends React.Component {
   componentDidMount() {
@@ -16,8 +17,24 @@ class OrderHistory extends React.Component {
             {this.props.orders.map(order => {
               const date = new Date(order.createdAt)
               return (
-                <li key={order.id}>{`${date.getMonth() +
-                  1}/${date.getDay()}/${date.getFullYear()}`}</li>
+                <li key={order.id}>
+                  {`${date.getMonth() +
+                    1}/${date.getDay()}/${date.getFullYear()}`}{' '}
+                  <ul>
+                    {' '}
+                    {order['order-lists'].map(orderList => (
+                      <div key={orderList.id}>
+                        <li>Product: {orderList.product.name}</li>
+                        <ul>
+                          <li>Quantity: {orderList.quantity}</li>
+                          <li>
+                            Price Per Unit: {priceConv(orderList.product.price)}
+                          </li>
+                        </ul>
+                      </div>
+                    ))}
+                  </ul>
+                </li>
               )
             })}
           </ul>

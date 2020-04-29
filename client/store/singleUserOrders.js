@@ -10,6 +10,7 @@ export const fetchOrders = userId => {
   return async dispatch => {
     try {
       const {data} = await Axios.get(`/api/orders/${userId}`)
+      console.log(data)
       dispatch(setOrderHistory(data))
     } catch (err) {
       console.error(err)
