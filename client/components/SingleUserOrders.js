@@ -8,7 +8,15 @@ class OrderHistory extends React.Component {
   }
 
   render() {
-    return <div></div>
+    return (
+      <div>
+        <ul>
+          {this.props.orders.map(order => (
+            <li key={order.id}>{order.createdAt}</li>
+          ))}
+        </ul>
+      </div>
+    )
   }
 }
 
