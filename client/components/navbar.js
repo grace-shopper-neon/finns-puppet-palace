@@ -27,7 +27,7 @@ const Navbar = ({handleClick, isLoggedIn}) => {
       <div>
         <h1 style={stylesTitle}>Finn's Puppet Palace</h1>
         <h3 style={stylesSlogan}>
-          'Exceptional puppets to tranform your hands'
+          'Exceptional puppets to transform your hands'
         </h3>
       </div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
