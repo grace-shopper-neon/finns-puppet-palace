@@ -35,6 +35,9 @@ export class Cart extends React.Component {
           <p id="orderTotal">
             <b>Total Price</b>
           </p>
+          <p id="remove">
+            <b>Remove</b>
+          </p>
         </div>
         <div id="orderLists" className="list-group">
           {this.props.cartOrderLists.map(order => {
